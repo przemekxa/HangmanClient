@@ -12,6 +12,10 @@
 		011BB94925881B3400439BE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 011BB94825881B3400439BE3 /* Assets.xcassets */; };
 		011BB94C25881B3400439BE3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 011BB94B25881B3400439BE3 /* Preview Assets.xcassets */; };
 		011BB94F25881B3400439BE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 011BB94D25881B3400439BE3 /* Main.storyboard */; };
+		011BB95F25881C6700439BE3 /* InRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011BB95D25881B9B00439BE3 /* InRoomView.swift */; };
+		011BB96025881C6700439BE3 /* CreateRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011BB95B25881B9B00439BE3 /* CreateRoom.swift */; };
+		011BB96125881C6700439BE3 /* JoinRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011BB95A25881B9B00439BE3 /* JoinRoom.swift */; };
+		011BB96225881C6700439BE3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011BB95C25881B9B00439BE3 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +27,10 @@
 		011BB94E25881B3400439BE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		011BB95025881B3400439BE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		011BB95125881B3400439BE3 /* HangmanClient.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HangmanClient.entitlements; sourceTree = "<group>"; };
+		011BB95A25881B9B00439BE3 /* JoinRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRoom.swift; sourceTree = "<group>"; };
+		011BB95B25881B9B00439BE3 /* CreateRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoom.swift; sourceTree = "<group>"; };
+		011BB95C25881B9B00439BE3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		011BB95D25881B9B00439BE3 /* InRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InRoomView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +63,7 @@
 		011BB94325881B3200439BE3 /* HangmanClient */ = {
 			isa = PBXGroup;
 			children = (
+				011BB95925881B8E00439BE3 /* Views */,
 				011BB94425881B3200439BE3 /* AppDelegate.swift */,
 				011BB94625881B3200439BE3 /* ContentView.swift */,
 				011BB94825881B3400439BE3 /* Assets.xcassets */,
@@ -72,6 +81,17 @@
 				011BB94B25881B3400439BE3 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		011BB95925881B8E00439BE3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				011BB95B25881B9B00439BE3 /* CreateRoom.swift */,
+				011BB95C25881B9B00439BE3 /* HomeView.swift */,
+				011BB95D25881B9B00439BE3 /* InRoomView.swift */,
+				011BB95A25881B9B00439BE3 /* JoinRoom.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +164,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				011BB96125881C6700439BE3 /* JoinRoom.swift in Sources */,
+				011BB96025881C6700439BE3 /* CreateRoom.swift in Sources */,
+				011BB95F25881C6700439BE3 /* InRoomView.swift in Sources */,
+				011BB96225881C6700439BE3 /* HomeView.swift in Sources */,
 				011BB94725881B3200439BE3 /* ContentView.swift in Sources */,
 				011BB94525881B3200439BE3 /* AppDelegate.swift in Sources */,
 			);

@@ -8,9 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State
+    private var inRoom = false
+
     var body: some View {
-        Text("Hello, World!")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+        ZStack {
+            if inRoom {
+                InRoomView()
+            } else {
+                HomeView(inRoom: $inRoom)
+            }
+
+        }
+        .frame(minWidth: 800, maxWidth: .infinity, minHeight: 600, maxHeight: .infinity)
     }
 }
 
