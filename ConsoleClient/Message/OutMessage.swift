@@ -72,7 +72,7 @@ extension Message {
     static func guess(letter: Character) -> Self {
         let data = Data(letter.utf8)
         assert(data.count >= 1 && data.count <= 4, "UTF-8 Character should be 1-4 bytes long")
-        return Message(type: .setName, data: data)
+        return Message(type: .guessLetter, data: data)
     }
 
 }

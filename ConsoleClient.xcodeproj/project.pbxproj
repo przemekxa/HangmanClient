@@ -15,6 +15,14 @@
 		01216C7C259A11B300FC4942 /* OutMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01216C7B259A11B300FC4942 /* OutMessage.swift */; };
 		0140CA45259B50E500D3BACE /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0140CA44259B50E500D3BACE /* Status.swift */; };
 		0140CA48259B536400D3BACE /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0140CA47259B536400D3BACE /* Player.swift */; };
+		0140CA54259B7A1A00D3BACE /* ConsoleClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0140CA53259B7A1A00D3BACE /* ConsoleClientTest.swift */; };
+		0140CA5B259B7AC600D3BACE /* InMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01216C70259A042000FC4942 /* InMessage.swift */; };
+		0140CA5E259B7AD200D3BACE /* OSLog+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01216C6D259A023300FC4942 /* OSLog+Extensions.swift */; };
+		0140CA5F259B7AD200D3BACE /* OutMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01216C7B259A11B300FC4942 /* OutMessage.swift */; };
+		0140CA60259B7AD200D3BACE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01216C77259A0C0900FC4942 /* Message.swift */; };
+		0140CA63259B7AD500D3BACE /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0140CA44259B50E500D3BACE /* Status.swift */; };
+		0140CA64259B7AD500D3BACE /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0140CA47259B536400D3BACE /* Player.swift */; };
+		0140CA67259B7ADF00D3BACE /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01216C73259A0BF600FC4942 /* Int+Extensions.swift */; };
 		01D8CDD625994FA10001AB3F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D8CDD525994FA10001AB3F /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,11 +47,21 @@
 		01216C7B259A11B300FC4942 /* OutMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutMessage.swift; sourceTree = "<group>"; };
 		0140CA44259B50E500D3BACE /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		0140CA47259B536400D3BACE /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		0140CA51259B7A1A00D3BACE /* ConsoleClientTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConsoleClientTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0140CA53259B7A1A00D3BACE /* ConsoleClientTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleClientTest.swift; sourceTree = "<group>"; };
+		0140CA55259B7A1A00D3BACE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01D8CDD225994FA10001AB3F /* ConsoleClient */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ConsoleClient; sourceTree = BUILT_PRODUCTS_DIR; };
 		01D8CDD525994FA10001AB3F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0140CA4E259B7A1A00D3BACE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		01D8CDCF25994FA10001AB3F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -73,10 +91,20 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		0140CA52259B7A1A00D3BACE /* ConsoleClientTest */ = {
+			isa = PBXGroup;
+			children = (
+				0140CA53259B7A1A00D3BACE /* ConsoleClientTest.swift */,
+				0140CA55259B7A1A00D3BACE /* Info.plist */,
+			);
+			path = ConsoleClientTest;
+			sourceTree = "<group>";
+		};
 		01D8CDC925994FA10001AB3F = {
 			isa = PBXGroup;
 			children = (
 				01D8CDD425994FA10001AB3F /* ConsoleClient */,
+				0140CA52259B7A1A00D3BACE /* ConsoleClientTest */,
 				01D8CDD325994FA10001AB3F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				01D8CDD225994FA10001AB3F /* ConsoleClient */,
+				0140CA51259B7A1A00D3BACE /* ConsoleClientTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,6 +134,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0140CA50259B7A1A00D3BACE /* ConsoleClientTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0140CA56259B7A1A00D3BACE /* Build configuration list for PBXNativeTarget "ConsoleClientTest" */;
+			buildPhases = (
+				0140CA4D259B7A1A00D3BACE /* Sources */,
+				0140CA4E259B7A1A00D3BACE /* Frameworks */,
+				0140CA4F259B7A1A00D3BACE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ConsoleClientTest;
+			productName = ConsoleClientTest;
+			productReference = 0140CA51259B7A1A00D3BACE /* ConsoleClientTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		01D8CDD125994FA10001AB3F /* ConsoleClient */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01D8CDD925994FA10001AB3F /* Build configuration list for PBXNativeTarget "ConsoleClient" */;
@@ -131,6 +177,9 @@
 				LastSwiftUpdateCheck = 1230;
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
+					0140CA50259B7A1A00D3BACE = {
+						CreatedOnToolsVersion = 12.3;
+					};
 					01D8CDD125994FA10001AB3F = {
 						CreatedOnToolsVersion = 12.3;
 					};
@@ -150,11 +199,37 @@
 			projectRoot = "";
 			targets = (
 				01D8CDD125994FA10001AB3F /* ConsoleClient */,
+				0140CA50259B7A1A00D3BACE /* ConsoleClientTest */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		0140CA4F259B7A1A00D3BACE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		0140CA4D259B7A1A00D3BACE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0140CA5F259B7AD200D3BACE /* OutMessage.swift in Sources */,
+				0140CA5B259B7AC600D3BACE /* InMessage.swift in Sources */,
+				0140CA60259B7AD200D3BACE /* Message.swift in Sources */,
+				0140CA5E259B7AD200D3BACE /* OSLog+Extensions.swift in Sources */,
+				0140CA64259B7AD500D3BACE /* Player.swift in Sources */,
+				0140CA67259B7ADF00D3BACE /* Int+Extensions.swift in Sources */,
+				0140CA54259B7A1A00D3BACE /* ConsoleClientTest.swift in Sources */,
+				0140CA63259B7AD500D3BACE /* Status.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		01D8CDCE25994FA10001AB3F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -174,6 +249,40 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		0140CA57259B7A1A00D3BACE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = ConsoleClientTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.poznan.ConsoleClientTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		0140CA58259B7A1A00D3BACE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = ConsoleClientTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.poznan.ConsoleClientTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		01D8CDD725994FA10001AB3F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -310,6 +419,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0140CA56259B7A1A00D3BACE /* Build configuration list for PBXNativeTarget "ConsoleClientTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0140CA57259B7A1A00D3BACE /* Debug */,
+				0140CA58259B7A1A00D3BACE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		01D8CDCD25994FA10001AB3F /* Build configuration list for PBXProject "ConsoleClient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

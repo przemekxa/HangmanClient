@@ -8,7 +8,7 @@
 import Foundation
 
 /// Type of the message
-enum MessageType: UInt8 {
+enum MessageType: UInt8, Equatable {
     case unknown = 0x00
 
     // K > S
@@ -32,7 +32,7 @@ enum MessageType: UInt8 {
     case scoreBoard = 0xb2
 }
 
-enum MessageError: UInt8, Error {
+enum MessageError: UInt8, Error, Equatable {
     case unknown = 0
     case roomFull = 1
     case roomNotFound = 2

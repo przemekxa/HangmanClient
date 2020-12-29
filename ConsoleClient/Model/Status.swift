@@ -34,7 +34,7 @@ struct Language: Equatable, Identifiable {
 
 // MARK: - Room settings
 
-struct RoomSettings {
+struct RoomSettings: Equatable {
     var language: Language
     var wordLength: UInt8
     var gameTime: UInt16
@@ -42,7 +42,7 @@ struct RoomSettings {
     var maxPlayers: UInt8
 }
 
-struct PossibleRoomSettings {
+struct PossibleRoomSettings: Equatable {
     var languages: [Language]
     var wordLength: ClosedRange<UInt8>
     var gameTime: ClosedRange<UInt16>
@@ -52,7 +52,7 @@ struct PossibleRoomSettings {
 
 // MARK: - Room status
 
-struct RoomStatus {
+struct RoomStatus: Equatable {
     let language: Language
     let wordLength: UInt8
     let gameTime: UInt16
@@ -63,7 +63,7 @@ struct RoomStatus {
 
 // MARK: - Game status
 
-struct GameStatus {
+struct GameStatus: Equatable {
     let remainingTime: TimeInterval
     let players: [PlayerInGame]
     let word: [Character?]

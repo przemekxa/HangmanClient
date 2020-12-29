@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum InMessage {
+enum InMessage: Equatable {
     case loggedIn(Player.ID)
     case error(MessageError)
     case roomSettings(PossibleRoomSettings)
@@ -100,22 +100,23 @@ extension InMessage {
 
         let language = Language(String(bytes: data[0...1], encoding: .ascii)!)
         let wordLength = data[2]
-        let gameTime = UInt16(bigEndian: data[3...4])
+        let gameTime = UInt16(bigEndian: Data(data[3...4]))
         let healthPoints = data[5]
-        let roomID = String(data: data[6...11], encoding: .ascii)!
+        let roomID = String(data: Data(data[6...11]), encoding: .ascii)!
         let playerCount = data[12]
 
         var players = [Player]()
         var i = 13
         while players.count < playerCount {
-            let id = UInt16(bigEndian: data[i...i+1])
+            let id = UInt16(bigEndian: Data(data[i...i+1]))
+            print("ID = \(id)")
             let nickLength = Int(data[i+2])
             i += 3
-            let nick = String(data: data[i..<nickLength], encoding: .utf8) ?? "Unknown"
+            let nick = String(data: Data(data[i..<i+nickLength]), encoding: .utf8) ?? "Unknown"
             i += nickLength
             players.append(Player(id: id, nick: nick))
         }
-        let hostID = UInt16(bigEndian: data[i...i+1])
+        let hostID = UInt16(bigEndian: Data(data[i...i+1]))
         if let index = players.firstIndex(where: { $0.id == hostID }) {
             players[index].isHost = true
         }
@@ -134,18 +135,18 @@ extension InMessage {
     private static func gameStatus(_ data: Data?) -> Self? {
         guard let data = data, data.count >= 4 else { return nil }
 
-        let remainingTime = Double(UInt16(bigEndian: data[0...1]))
+        let remainingTime = Double(UInt16(bigEndian: Data(data[0...1])))
         let playerCount = data[2]
 
         var players = [PlayerInGame]()
         var i = 3
         while players.count < playerCount {
-            let id = UInt16(bigEndian: data[i...i+1])
+            let id = UInt16(bigEndian: Data(data[i...i+1]))
             let nickLength = Int(data[i+2])
             i += 3
-            let nick = String(data: data[i..<nickLength], encoding: .utf8) ?? "Unknown"
+            let nick = String(data: Data(data[i..<i+nickLength]), encoding: .utf8) ?? "Unknown"
             i += nickLength
-            let points = UInt16(bigEndian: data[i...i+1])
+            let points = UInt16(bigEndian: Data(data[i...i+1]))
             let remainingHealth = data[i+2]
             let guessed = data[i+3] != 0
             i += 4
@@ -157,7 +158,7 @@ extension InMessage {
                                         guessed: guessed))
         }
         let wordLength = Int(data[i])
-        let word = Array(String(data: data[i+1..<i+1+wordLength], encoding: .utf8)!)
+        let word = Array(String(data: Data(data[i+1..<i+1+wordLength]), encoding: .utf8)!)
             .map { $0 == Character(Unicode.Scalar(0)) ? nil : $0 }
 
         return .gameStatus(GameStatus(remainingTime: remainingTime, players: players, word: word))
@@ -171,12 +172,12 @@ extension InMessage {
         var players = [PlayerScoreboard]()
         var i = 1
         while players.count < playerCount {
-            let id = UInt16(bigEndian: data[i...i+1])
+            let id = UInt16(bigEndian: Data(data[i...i+1]))
             let nickLength = Int(data[i+2])
             i += 3
-            let nick = String(data: data[i..<nickLength], encoding: .utf8) ?? "Unknown"
+            let nick = String(data: Data(data[i..<i+nickLength]), encoding: .utf8) ?? "Unknown"
             i += nickLength
-            let points = UInt16(bigEndian: data[i...i+1])
+            let points = UInt16(bigEndian: Data(data[i...i+1]))
             i += 2
             players.append(PlayerScoreboard(id: id, nick: nick, points: points))
         }
