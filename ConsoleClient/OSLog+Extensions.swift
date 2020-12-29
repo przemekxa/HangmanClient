@@ -40,6 +40,7 @@ struct Log {
         log(message, type: .fault, args)
     }
 
+    // swiftlint:disable:next identifier_name
     @usableFromInline internal func log(_ message: StaticString, type: OSLogType, _ a: [CVarArg]) {
         // The Swift overlay of os_log prevents from accepting an unbounded number of args
         assert(a.count <= 5)

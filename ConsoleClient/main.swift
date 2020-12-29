@@ -8,7 +8,6 @@
 import Foundation
 import Network
 
-
 class Controller: ConnectionDelegate {
 
     // Connection
@@ -19,19 +18,18 @@ class Controller: ConnectionDelegate {
     private let log = Log("🕹️Controller")
 
     // State
-    private(set) var restorationID: UInt16?
+    private(set) var id: UInt16?
     private(set) var connected = false
     private(set) var loggedIn = false
 
-    init(restorationID: RestorationID? = nil) {
-        self.restorationID = restorationID
+    init(id: Player.ID? = nil) {
+        self.id = id
         hostname = "127.0.0.1"
         port = 1234
         connection = Connection(hostname: hostname, port: port)
         connection.delegate = self
         connection.start()
     }
-
 
     // State of the connection changed
     func stateDidChange(to state: Connection.State) {
@@ -67,20 +65,22 @@ class Controller: ConnectionDelegate {
         switch message {
 
         // Logged in to the server
-        case .loggedIn(let restorationID):
+        case .loggedIn(let id):
             loggedIn = true
-            self.restorationID = restorationID
+            self.id = id
+
+        default:
+            break
         }
     }
 
     /// Login to the server
     private func login() {
-        log.debug("Sending login message with restoration ID:", String(describing: restorationID))
-        connection.send(.login(restorationID))
+        log.debug("Sending login message with player ID:", String(describing: id))
+        connection.send(.login(id))
     }
 
 }
-
 
 let controller = Controller()
 RunLoop.main.run()

@@ -30,7 +30,6 @@ class Connection {
     private let queue = DispatchQueue(label: "ConnectionQueue")
     weak var delegate: ConnectionDelegate?
 
-
     /// Create connection
     init(hostname: NWEndpoint.Host, port: NWEndpoint.Port, delegate: ConnectionDelegate? = nil) {
         connection = NWConnection(host: hostname, port: port, using: .tcp)
@@ -61,8 +60,11 @@ class Connection {
     /// Receive message 3-byte header
     private func receiveHeader() {
 
-        connection.receive(minimumIncompleteLength: 3, maximumLength: 3) { [weak self] (data, context, isComplete, error) in
+        connection.receive(minimumIncompleteLength: 3, maximumLength: 3)
+        { [weak self] (data, _, isComplete, error) in
+            // swiftlint:disable:previous opening_brace
 
+            // Message complete
             if isComplete {
                 self?.log.debug("Server finished sending messages")
                 self?.stop()
@@ -80,10 +82,10 @@ class Connection {
                 let length = UInt16(bigEndian: Data(data[1...2]))
 
                 // Message without body
-                if(length == 0) {
+                if length == 0 {
                     self?.parse(message: Message(type: type, data: data))
 
-                    if(!isComplete && error == nil) {
+                    if !isComplete && error == nil {
                         self?.receiveHeader()
                     }
                 } else {
@@ -99,14 +101,15 @@ class Connection {
     private func receiveBody(type: MessageType, length: UInt16) {
 
         connection.receive(minimumIncompleteLength: Int(length), maximumLength: Int(length))
-        { [weak self] (data, context, isComplete, error) in
-
+        { [weak self] (data, _, isComplete, error) in
+            // swiftlint:disable:previous opening_brace
 
             // Received data
             if let data = data {
                 self?.parse(message: Message(type: type, data: data))
             }
 
+            // Message complete
             if isComplete {
                 self?.log.debug("Server finished sending messages")
                 self?.stop()
@@ -116,13 +119,13 @@ class Connection {
                 self?.log.error("Error receiving data: %@", error.localizedDescription)
                 self?.stop()
             }
+            // Everything OK, can wait for next message
             else {
                 self?.receiveHeader()
             }
 
         }
     }
-
 
     /// Parse the message and send to the delegate
     private func parse(message raw: Message) {
@@ -151,14 +154,19 @@ class Connection {
     func send(_ message: Message) {
         var data = Data()
         data.append(message.type.rawValue)
-        var length = UInt16(message.data.count).bigEndian
-        withUnsafeBytes(of: &length) { data.append(contentsOf: $0) }
-        data += message.data
+
+        if let messageData = message.data {
+            data += UInt16(messageData.count).bigEndianData
+            data += messageData
+        } else {
+            data += UInt16(0).bigEndianData
+        }
 
         // Sending the data
         connection.send(content: data, completion: .contentProcessed({ [weak self] error in
             if let error = error {
-                self?.log.error("Error sending message of type '%@': %@", String(describing: message.type), error.localizedDescription)
+                self?.log.error("Error sending message of type '%@': %@",
+                                String(describing: message.type), error.localizedDescription)
 
                 return
             } else {
