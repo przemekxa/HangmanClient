@@ -64,14 +64,13 @@ extension Message {
     /// Create 'guessWord' message
     /// - Parameter word: Guessed word
     static func guess(word: String) -> Self {
-        return Message(type: .guessWord, data: word.data(using: .utf8)!)
+        return Message(type: .guessWord, data: word.data(using: .utf32BigEndian)!)
     }
 
     /// Create 'guessLetter' message
     /// - Parameter letter: Guessed letter
     static func guess(letter: Character) -> Self {
-        let data = Data(letter.utf8)
-        assert(data.count >= 1 && data.count <= 4, "UTF-8 Character should be 1-4 bytes long")
+        let data = letter.unicodeScalars.first!.value.bigEndianData
         return Message(type: .guessLetter, data: data)
     }
 

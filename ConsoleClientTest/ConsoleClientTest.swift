@@ -14,6 +14,9 @@ extension String {
     var utf8: [UInt8] {
         Array(self.data(using: .utf8)!)
     }
+    var utf32: [UInt8] {
+        Array(self.data(using: .utf32BigEndian)!)
+    }
 }
 
 class ConsoleClientTest: XCTestCase {
@@ -187,25 +190,25 @@ class ConsoleClientTest: XCTestCase {
     func testGuessWord() {
         let msg = Message.guess(word: "Słowo")
         XCTAssertEqual(msg.type, .guessWord)
-        XCTAssertEqual(msg.data, Data("Słowo".utf8))
+        XCTAssertEqual(msg.data, Data("Słowo".utf32))
     }
 
     func testGuessLetter() {
         var msg = Message.guess(letter: "a")
         XCTAssertEqual(msg.type, .guessLetter)
-        XCTAssertEqual(msg.data, Data([0x61]))
+        XCTAssertEqual(msg.data, Data([0x00, 0x00, 0x00, 0x61]))
 
         msg = Message.guess(letter: "ą")
         XCTAssertEqual(msg.type, .guessLetter)
-        XCTAssertEqual(msg.data, Data([0xc4, 0x85]))
+        XCTAssertEqual(msg.data, Data([0x00, 0x00, 0x01, 0x05]))
 
         msg = Message.guess(letter: "€")
         XCTAssertEqual(msg.type, .guessLetter)
-        XCTAssertEqual(msg.data, Data([0xe2, 0x82, 0xac]))
+        XCTAssertEqual(msg.data, Data([0x00, 0x00, 0x20, 0xac]))
 
         msg = Message.guess(letter: "𐍈")
         XCTAssertEqual(msg.type, .guessLetter)
-        XCTAssertEqual(msg.data, Data([0xf0, 0x90, 0x8d, 0x88]))
+        XCTAssertEqual(msg.data, Data([0x00, 0x01, 0x03, 0x48]))
     }
 
     func testScoreboard() {
@@ -218,7 +221,6 @@ class ConsoleClientTest: XCTestCase {
         XCTAssertNotNil(msg)
 
         if case .scoreboard(let players) = msg! {
-            XCTAssertEqual(players.count, 3)
             XCTAssertEqual(players.count, 3)
             XCTAssertEqual(players[0], PlayerScoreboard(id: 0x1234, nick: "123", points: 0xabcd))
             XCTAssertEqual(players[1], PlayerScoreboard(id: 0x5678, nick: "Dłuższa nazwa", points: 0x0000))
