@@ -16,6 +16,21 @@
 		011BB96025881C6700439BE3 /* CreateRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011BB95B25881B9B00439BE3 /* CreateRoom.swift */; };
 		011BB96125881C6700439BE3 /* JoinRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011BB95A25881B9B00439BE3 /* JoinRoom.swift */; };
 		011BB96225881C6700439BE3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011BB95C25881B9B00439BE3 /* HomeView.swift */; };
+		012128CE25A22F8B000D4DF6 /* RoomInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012128CD25A22F8B000D4DF6 /* RoomInfoView.swift */; };
+		014EB4A425A22D17006C1D97 /* PlayerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014EB4A325A22D17006C1D97 /* PlayerCellView.swift */; };
+		0167634C25A1E631002D08A4 /* ConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0167634B25A1E631002D08A4 /* ConnectView.swift */; };
+		0167635025A1E987002D08A4 /* ConnectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0167634F25A1E987002D08A4 /* ConnectViewModel.swift */; };
+		0167635425A1EBB0002D08A4 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0167635325A1EBB0002D08A4 /* Connection.swift */; };
+		0167636525A1EBFC002D08A4 /* OutMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0167635D25A1EBFC002D08A4 /* OutMessage.swift */; };
+		0167636625A1EBFC002D08A4 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0167635E25A1EBFC002D08A4 /* Message.swift */; };
+		0167636725A1EBFC002D08A4 /* InMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0167635F25A1EBFC002D08A4 /* InMessage.swift */; };
+		0167636825A1EBFC002D08A4 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0167636025A1EBFC002D08A4 /* Int+Extensions.swift */; };
+		0167636925A1EBFC002D08A4 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0167636225A1EBFC002D08A4 /* Status.swift */; };
+		0167636A25A1EBFC002D08A4 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0167636325A1EBFC002D08A4 /* Player.swift */; };
+		0167636B25A1EBFC002D08A4 /* OSLog+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0167636425A1EBFC002D08A4 /* OSLog+Extensions.swift */; };
+		0167637025A1EF93002D08A4 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0167636F25A1EF93002D08A4 /* Navigation.swift */; };
+		0167637325A1FF6D002D08A4 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0167637225A1FF6D002D08A4 /* HomeViewModel.swift */; };
+		0167637825A227C3002D08A4 /* RoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0167637725A227C3002D08A4 /* RoomViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +46,21 @@
 		011BB95B25881B9B00439BE3 /* CreateRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoom.swift; sourceTree = "<group>"; };
 		011BB95C25881B9B00439BE3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		011BB95D25881B9B00439BE3 /* InRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InRoomView.swift; sourceTree = "<group>"; };
+		012128CD25A22F8B000D4DF6 /* RoomInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomInfoView.swift; sourceTree = "<group>"; };
+		014EB4A325A22D17006C1D97 /* PlayerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCellView.swift; sourceTree = "<group>"; };
+		0167634B25A1E631002D08A4 /* ConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectView.swift; sourceTree = "<group>"; };
+		0167634F25A1E987002D08A4 /* ConnectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectViewModel.swift; sourceTree = "<group>"; };
+		0167635325A1EBB0002D08A4 /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Connection.swift; path = HangmanClient/Connection.swift; sourceTree = SOURCE_ROOT; };
+		0167635D25A1EBFC002D08A4 /* OutMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutMessage.swift; sourceTree = "<group>"; };
+		0167635E25A1EBFC002D08A4 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		0167635F25A1EBFC002D08A4 /* InMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMessage.swift; sourceTree = "<group>"; };
+		0167636025A1EBFC002D08A4 /* Int+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
+		0167636225A1EBFC002D08A4 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		0167636325A1EBFC002D08A4 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		0167636425A1EBFC002D08A4 /* OSLog+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OSLog+Extensions.swift"; sourceTree = "<group>"; };
+		0167636F25A1EF93002D08A4 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
+		0167637225A1FF6D002D08A4 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		0167637725A227C3002D08A4 /* RoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,12 +93,19 @@
 		011BB94325881B3200439BE3 /* HangmanClient */ = {
 			isa = PBXGroup;
 			children = (
+				0167634E25A1E978002D08A4 /* ViewModel */,
 				011BB95925881B8E00439BE3 /* Views */,
+				0167635C25A1EBFC002D08A4 /* Message */,
+				0167636125A1EBFC002D08A4 /* Model */,
+				0167635325A1EBB0002D08A4 /* Connection.swift */,
 				011BB94425881B3200439BE3 /* AppDelegate.swift */,
+				0167636F25A1EF93002D08A4 /* Navigation.swift */,
 				011BB94625881B3200439BE3 /* ContentView.swift */,
 				011BB94825881B3400439BE3 /* Assets.xcassets */,
 				011BB94D25881B3400439BE3 /* Main.storyboard */,
 				011BB95025881B3400439BE3 /* Info.plist */,
+				0167636025A1EBFC002D08A4 /* Int+Extensions.swift */,
+				0167636425A1EBFC002D08A4 /* OSLog+Extensions.swift */,
 				011BB95125881B3400439BE3 /* HangmanClient.entitlements */,
 				011BB94A25881B3400439BE3 /* Preview Content */,
 			);
@@ -86,12 +123,44 @@
 		011BB95925881B8E00439BE3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				011BB95B25881B9B00439BE3 /* CreateRoom.swift */,
+				0167634B25A1E631002D08A4 /* ConnectView.swift */,
 				011BB95C25881B9B00439BE3 /* HomeView.swift */,
-				011BB95D25881B9B00439BE3 /* InRoomView.swift */,
 				011BB95A25881B9B00439BE3 /* JoinRoom.swift */,
+				011BB95B25881B9B00439BE3 /* CreateRoom.swift */,
+				011BB95D25881B9B00439BE3 /* InRoomView.swift */,
+				014EB4A325A22D17006C1D97 /* PlayerCellView.swift */,
+				012128CD25A22F8B000D4DF6 /* RoomInfoView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		0167634E25A1E978002D08A4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0167634F25A1E987002D08A4 /* ConnectViewModel.swift */,
+				0167637225A1FF6D002D08A4 /* HomeViewModel.swift */,
+				0167637725A227C3002D08A4 /* RoomViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0167635C25A1EBFC002D08A4 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				0167635D25A1EBFC002D08A4 /* OutMessage.swift */,
+				0167635E25A1EBFC002D08A4 /* Message.swift */,
+				0167635F25A1EBFC002D08A4 /* InMessage.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		0167636125A1EBFC002D08A4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0167636225A1EBFC002D08A4 /* Status.swift */,
+				0167636325A1EBFC002D08A4 /* Player.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,12 +233,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0167636B25A1EBFC002D08A4 /* OSLog+Extensions.swift in Sources */,
 				011BB96125881C6700439BE3 /* JoinRoom.swift in Sources */,
+				012128CE25A22F8B000D4DF6 /* RoomInfoView.swift in Sources */,
+				0167635425A1EBB0002D08A4 /* Connection.swift in Sources */,
+				0167637325A1FF6D002D08A4 /* HomeViewModel.swift in Sources */,
+				014EB4A425A22D17006C1D97 /* PlayerCellView.swift in Sources */,
+				0167636725A1EBFC002D08A4 /* InMessage.swift in Sources */,
+				0167634C25A1E631002D08A4 /* ConnectView.swift in Sources */,
 				011BB96025881C6700439BE3 /* CreateRoom.swift in Sources */,
+				0167636825A1EBFC002D08A4 /* Int+Extensions.swift in Sources */,
+				0167636525A1EBFC002D08A4 /* OutMessage.swift in Sources */,
+				0167637025A1EF93002D08A4 /* Navigation.swift in Sources */,
 				011BB95F25881C6700439BE3 /* InRoomView.swift in Sources */,
+				0167636625A1EBFC002D08A4 /* Message.swift in Sources */,
+				0167636925A1EBFC002D08A4 /* Status.swift in Sources */,
 				011BB96225881C6700439BE3 /* HomeView.swift in Sources */,
 				011BB94725881B3200439BE3 /* ContentView.swift in Sources */,
 				011BB94525881B3200439BE3 /* AppDelegate.swift in Sources */,
+				0167636A25A1EBFC002D08A4 /* Player.swift in Sources */,
+				0167635025A1E987002D08A4 /* ConnectViewModel.swift in Sources */,
+				0167637825A227C3002D08A4 /* RoomViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

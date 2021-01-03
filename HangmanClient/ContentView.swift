@@ -15,9 +15,10 @@ struct ContentView: View {
 
         ZStack {
             if inRoom {
-                InRoomView()
+                Text("In room")
+                //InRoomView()
             } else {
-                HomeView(inRoom: $inRoom)
+                HomeView(viewModel: HomeViewModel(Connection(hostname: "127.0.0.1", port: 1234)))
             }
 
         }

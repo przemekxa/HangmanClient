@@ -9,6 +9,9 @@ import SwiftUI
 
 struct JoinRoom: View {
 
+    @ObservedObject
+    var viewModel: HomeViewModel
+
     @State
     private var pin = ""
 
@@ -29,7 +32,7 @@ struct JoinRoom: View {
                 .padding(.vertical, 16.0)
 
             Button("Dołącz") {
-                print("Kliknięto Dołącz")
+                self.viewModel.joinRoom(with: pin)
             }
             .disabled(!verifyPin())
 
@@ -46,7 +49,7 @@ struct JoinRoom: View {
 
 struct JoinRoom_Previews: PreviewProvider {
     static var previews: some View {
-        JoinRoom()
+        JoinRoom(viewModel: HomeViewModel(Connection(hostname: "127.0.0.1", port: 1234)))
             .frame(width: 800.0, height: 600.0)
     }
 }

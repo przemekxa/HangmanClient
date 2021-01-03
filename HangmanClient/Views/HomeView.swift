@@ -9,14 +9,14 @@ import SwiftUI
 
 struct HomeView: View {
 
+    @ObservedObject
+    var viewModel: HomeViewModel
+
     @State
     var selection = 0
 
     @State
     private var username = ""
-
-    @Binding
-    var inRoom: Bool
 
     var body: some View {
         HStack(alignment: .center, spacing: 16.0) {
@@ -35,28 +35,33 @@ struct HomeView: View {
                     .padding(.bottom, 16.0)
 
                 GroupBox(label: Text("Nazwa użytkownika"), content: {
-                    TextField("Nazwa użytkownika", text: $username)
+                    TextField("Nazwa użytkownika", text: $viewModel.nick)
                         .padding(8.0)
                         .frame(maxWidth: .infinity)
                 })
 
-                Button("TESTUJ POKÓJ") {
-                    withAnimation {
-                        self.inRoom = true
+                if let error = viewModel.error {
+                    GroupBox(label: Text("Błąd").foregroundColor(.red)) {
+                        Text(error)
+                            .frame(maxWidth: .infinity)
                     }
                 }
+
                 Spacer()
             }
             //.padding(8.0)
 
             TabView(selection: $selection) {
-                JoinRoom()
+                JoinRoom(viewModel: viewModel)
                     .tabItem { Text("Dołącz do pokoju") }
                     .tag(0)
-                CreateRoom()
-                    .tabItem { Text("Utwórz nowy pokój") }
-                    .tag(1)
+                if let settings = viewModel.possibleSettings {
+                    CreateRoom(possibleSettings: settings, viewModel: viewModel)
+                        .tabItem { Text("Utwórz nowy pokój") }
+                        .tag(1)
+                }
             }
+
         }
         .padding()
     }
@@ -64,7 +69,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(inRoom: .constant(false))
+        HomeView(viewModel: HomeViewModel(Connection(hostname: "127.0.0.1", port: 1234)))
             .frame(width: 800.0, height: 600.0)
     }
 }
