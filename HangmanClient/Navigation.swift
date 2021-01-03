@@ -13,12 +13,14 @@ class Navigation {
     private var connectWindow: NSWindow?
     private var homeWindow: NSWindow?
     private var roomWindow: NSWindow?
+    private var gameWindow: NSWindow?
 
     private var lastRect: NSRect?
-    private var possibleSettings: PossibleRoomSettings?
 
     private let log = Log("🧭Navigation")
     private var connection: Connection?
+    private var playerID: Player.ID?
+    private var possibleSettings: PossibleRoomSettings?
 
     init() {
         // Show 'Connect' window first
@@ -67,8 +69,8 @@ class Navigation {
     }
 
     /// Make a room window
-    private func makeRoomWindow(with userID: Player.ID, status initialStatus: RoomStatus) {
-        let viewModel = RoomViewModel(connection!, userID: userID, initialStatus: initialStatus)
+    private func makeRoomWindow(with playerID: Player.ID, status initialStatus: RoomStatus) {
+        let viewModel = RoomViewModel(connection!, playerID: playerID, initialStatus: initialStatus)
         viewModel.delegate = self
 
         let window = NSWindow(
@@ -81,7 +83,7 @@ class Navigation {
         window.title = "Wisielec — pokój"
         window.center()
         window.setFrameAutosaveName("HangmanRoom")
-        window.contentView = NSHostingView(rootView:  InRoomView(viewModel: viewModel))
+        window.contentView = NSHostingView(rootView:  RoomView(viewModel: viewModel))
         window.makeKeyAndOrderFront(nil)
         roomWindow = window
     }
@@ -103,7 +105,13 @@ extension Navigation: ConnectDelegate {
 
 extension Navigation: HomeDelegate {
 
+    func loggedIn(with playerID: Player.ID) {
+        log.debug("Player logged in with id = %d", playerID)
+        self.playerID = playerID
+    }
+
     func receivedSettings(possibleSettings: PossibleRoomSettings) {
+        log.debug("Player received possible room settings")
         self.possibleSettings = possibleSettings
     }
 
@@ -117,14 +125,20 @@ extension Navigation: HomeDelegate {
         makeConnectWindow(with: "Utracono połączenie")
     }
 
-    func inRoom(with userID: Player.ID, status: RoomStatus) {
+    func inRoom(with playerID: Player.ID, status: RoomStatus) {
         log.debug("Player inside a room")
 
         lastRect = homeWindow?.frame
         homeWindow?.close()
         homeWindow = nil
 
-        makeRoomWindow(with: userID, status: status)
+        makeRoomWindow(with: playerID, status: status)
+    }
+
+    func inGame(with status: GameStatus) {
+        log.debug("Player in game")
+
+        // TODO: Handle in-game
     }
 
 }

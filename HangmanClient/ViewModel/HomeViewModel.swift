@@ -8,9 +8,11 @@
 import Foundation
 
 protocol HomeDelegate: AnyObject {
+    func loggedIn(with playerID: Player.ID)
     func receivedSettings(possibleSettings: PossibleRoomSettings)
     func disconnected()
-    func inRoom(with userID: Player.ID, status: RoomStatus)
+    func inRoom(with playerID: Player.ID, status: RoomStatus)
+    func inGame(with status: GameStatus)
 }
 
 class HomeViewModel: ObservableObject {
@@ -25,30 +27,40 @@ class HomeViewModel: ObservableObject {
     private var connection: Connection
     weak var delegate: HomeDelegate?
 
-    private var userID: Player.ID?
+    private var playerID: Player.ID?
 
     init(_ connection: Connection, possibleSettings: PossibleRoomSettings? = nil, error: String? = nil) {
         self.connection = connection
         self.connection.delegate = self
         self.error = error
-        self.userID = UserDefaults.standard.object(forKey: "userID") != nil ? UInt16(UserDefaults.standard.integer(forKey: "userID")) : nil
-        log.debug("Init with userID = %@", String(describing: userID))
+        self.playerID = Defaults.playerID
+        self.nick = Defaults.nick
+        log.debug("Init with playerID = %@", String(describing: playerID))
 
         if let possibleSettings = possibleSettings {
             self.possibleSettings = possibleSettings
         } else {
-            self.connection.send(.login(self.userID))
+            self.connection.send(.login(self.playerID))
         }
     }
 
     func joinRoom(with id: String) {
         log.debug("Joining room with id %@", id)
+        setNick()
         connection.send(.joinRoom(id))
     }
 
     func createRoom(with settings: RoomSettings) {
         log.debug("Creating room with settings: %@", String(describing: settings))
+        setNick()
         connection.send(.createRoom(settings))
+    }
+
+    private func setNick() {
+        if !nick.isEmpty {
+            connection.send(.set(name: nick))
+            Defaults.nick = nick
+        }
     }
 }
 
@@ -64,15 +76,18 @@ extension HomeViewModel: ConnectionDelegate {
         log.debug("Received message: %@", String(describing: message))
         switch message {
         case .loggedIn(let id):
-            UserDefaults.standard.set(id, forKey: "userID")
-            userID = id
+            playerID = id
+            Defaults.playerID = id
+            delegate?.loggedIn(with: id)
         case .error(let error):
             self.error = error.userDescription
         case .roomSettings(let settings):
             self.possibleSettings = settings
             delegate?.receivedSettings(possibleSettings: settings)
         case .roomStatus(let status):
-            delegate?.inRoom(with: userID!, status: status)
+            delegate?.inRoom(with: playerID!, status: status)
+        case .gameStatus(let status):
+            delegate?.inGame(with: status)
         default:
             log.error("Message is not supported by this class")
         }

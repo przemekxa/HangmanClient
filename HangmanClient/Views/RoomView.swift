@@ -84,7 +84,7 @@ struct RoomView: View {
 
 }
 
-struct InRoomView_Previews: PreviewProvider {
+struct RoomView_Previews: PreviewProvider {
     static var previews: some View {
         RoomView(viewModel: RoomViewModel(Connection(hostname: "127.0.0.1", port: 1234),
                                             playerID: 456,

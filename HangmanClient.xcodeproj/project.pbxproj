@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0103D23D25A2666600DCAA9A /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0103D23C25A2666600DCAA9A /* Defaults.swift */; };
+		0103D24025A26BEA00DCAA9A /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0103D23F25A26BEA00DCAA9A /* GameView.swift */; };
+		0103D24325A26FE700DCAA9A /* WordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0103D24225A26FE700DCAA9A /* WordView.swift */; };
 		011BB94525881B3200439BE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011BB94425881B3200439BE3 /* AppDelegate.swift */; };
-		011BB94725881B3200439BE3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011BB94625881B3200439BE3 /* ContentView.swift */; };
 		011BB94925881B3400439BE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 011BB94825881B3400439BE3 /* Assets.xcassets */; };
 		011BB94C25881B3400439BE3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 011BB94B25881B3400439BE3 /* Preview Assets.xcassets */; };
 		011BB94F25881B3400439BE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 011BB94D25881B3400439BE3 /* Main.storyboard */; };
-		011BB95F25881C6700439BE3 /* InRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011BB95D25881B9B00439BE3 /* InRoomView.swift */; };
+		011BB95F25881C6700439BE3 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011BB95D25881B9B00439BE3 /* RoomView.swift */; };
 		011BB96025881C6700439BE3 /* CreateRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011BB95B25881B9B00439BE3 /* CreateRoom.swift */; };
 		011BB96125881C6700439BE3 /* JoinRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011BB95A25881B9B00439BE3 /* JoinRoom.swift */; };
 		011BB96225881C6700439BE3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011BB95C25881B9B00439BE3 /* HomeView.swift */; };
@@ -34,9 +36,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0103D23C25A2666600DCAA9A /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		0103D23F25A26BEA00DCAA9A /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		0103D24225A26FE700DCAA9A /* WordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordView.swift; sourceTree = "<group>"; };
 		011BB94125881B3200439BE3 /* HangmanClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HangmanClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		011BB94425881B3200439BE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		011BB94625881B3200439BE3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		011BB94825881B3400439BE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		011BB94B25881B3400439BE3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		011BB94E25881B3400439BE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -45,7 +49,7 @@
 		011BB95A25881B9B00439BE3 /* JoinRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRoom.swift; sourceTree = "<group>"; };
 		011BB95B25881B9B00439BE3 /* CreateRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoom.swift; sourceTree = "<group>"; };
 		011BB95C25881B9B00439BE3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		011BB95D25881B9B00439BE3 /* InRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InRoomView.swift; sourceTree = "<group>"; };
+		011BB95D25881B9B00439BE3 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 		012128CD25A22F8B000D4DF6 /* RoomInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomInfoView.swift; sourceTree = "<group>"; };
 		014EB4A325A22D17006C1D97 /* PlayerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCellView.swift; sourceTree = "<group>"; };
 		0167634B25A1E631002D08A4 /* ConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectView.swift; sourceTree = "<group>"; };
@@ -74,6 +78,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0103D24725A276B600DCAA9A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				014EB4A325A22D17006C1D97 /* PlayerCellView.swift */,
+				012128CD25A22F8B000D4DF6 /* RoomInfoView.swift */,
+				0103D24225A26FE700DCAA9A /* WordView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		011BB93825881B3200439BE3 = {
 			isa = PBXGroup;
 			children = (
@@ -100,12 +114,12 @@
 				0167635325A1EBB0002D08A4 /* Connection.swift */,
 				011BB94425881B3200439BE3 /* AppDelegate.swift */,
 				0167636F25A1EF93002D08A4 /* Navigation.swift */,
-				011BB94625881B3200439BE3 /* ContentView.swift */,
+				0103D23C25A2666600DCAA9A /* Defaults.swift */,
+				0167636025A1EBFC002D08A4 /* Int+Extensions.swift */,
+				0167636425A1EBFC002D08A4 /* OSLog+Extensions.swift */,
 				011BB94825881B3400439BE3 /* Assets.xcassets */,
 				011BB94D25881B3400439BE3 /* Main.storyboard */,
 				011BB95025881B3400439BE3 /* Info.plist */,
-				0167636025A1EBFC002D08A4 /* Int+Extensions.swift */,
-				0167636425A1EBFC002D08A4 /* OSLog+Extensions.swift */,
 				011BB95125881B3400439BE3 /* HangmanClient.entitlements */,
 				011BB94A25881B3400439BE3 /* Preview Content */,
 			);
@@ -127,9 +141,9 @@
 				011BB95C25881B9B00439BE3 /* HomeView.swift */,
 				011BB95A25881B9B00439BE3 /* JoinRoom.swift */,
 				011BB95B25881B9B00439BE3 /* CreateRoom.swift */,
-				011BB95D25881B9B00439BE3 /* InRoomView.swift */,
-				014EB4A325A22D17006C1D97 /* PlayerCellView.swift */,
-				012128CD25A22F8B000D4DF6 /* RoomInfoView.swift */,
+				011BB95D25881B9B00439BE3 /* RoomView.swift */,
+				0103D23F25A26BEA00DCAA9A /* GameView.swift */,
+				0103D24725A276B600DCAA9A /* Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -241,19 +255,21 @@
 				014EB4A425A22D17006C1D97 /* PlayerCellView.swift in Sources */,
 				0167636725A1EBFC002D08A4 /* InMessage.swift in Sources */,
 				0167634C25A1E631002D08A4 /* ConnectView.swift in Sources */,
+				0103D24325A26FE700DCAA9A /* WordView.swift in Sources */,
 				011BB96025881C6700439BE3 /* CreateRoom.swift in Sources */,
 				0167636825A1EBFC002D08A4 /* Int+Extensions.swift in Sources */,
 				0167636525A1EBFC002D08A4 /* OutMessage.swift in Sources */,
 				0167637025A1EF93002D08A4 /* Navigation.swift in Sources */,
-				011BB95F25881C6700439BE3 /* InRoomView.swift in Sources */,
+				0103D24025A26BEA00DCAA9A /* GameView.swift in Sources */,
+				011BB95F25881C6700439BE3 /* RoomView.swift in Sources */,
 				0167636625A1EBFC002D08A4 /* Message.swift in Sources */,
 				0167636925A1EBFC002D08A4 /* Status.swift in Sources */,
 				011BB96225881C6700439BE3 /* HomeView.swift in Sources */,
-				011BB94725881B3200439BE3 /* ContentView.swift in Sources */,
 				011BB94525881B3200439BE3 /* AppDelegate.swift in Sources */,
 				0167636A25A1EBFC002D08A4 /* Player.swift in Sources */,
 				0167635025A1E987002D08A4 /* ConnectViewModel.swift in Sources */,
 				0167637825A227C3002D08A4 /* RoomViewModel.swift in Sources */,
+				0103D23D25A2666600DCAA9A /* Defaults.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

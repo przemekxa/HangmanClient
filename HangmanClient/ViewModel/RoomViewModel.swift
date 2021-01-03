@@ -12,6 +12,7 @@ protocol RoomDelegate: AnyObject {
     func disconnected()
     func left()
     func kicked()
+    func inGame(with status: GameStatus)
 }
 
 class RoomViewModel: ObservableObject {
@@ -19,7 +20,7 @@ class RoomViewModel: ObservableObject {
     // State
     @Published var status: RoomStatus
     @Published var isHost: Bool
-    @Published var userID: Player.ID
+    @Published var playerID: Player.ID
     @Published var error: String?
 
     private let log = Log("👥RoomVM")
@@ -28,11 +29,11 @@ class RoomViewModel: ObservableObject {
 
 
 
-    init(_ connection: Connection, userID: Player.ID, initialStatus status: RoomStatus) {
+    init(_ connection: Connection, playerID: Player.ID, initialStatus status: RoomStatus) {
         self.connection = connection
-        self.userID = userID
+        self.playerID = playerID
         self.status = status
-        self.isHost = status.players.first(where: { $0.id == userID })?.isHost ?? false
+        self.isHost = status.players.first(where: { $0.id == playerID })?.isHost ?? false
         self.connection.delegate = self
         log.debug("Init")
     }
@@ -75,9 +76,12 @@ extension RoomViewModel: ConnectionDelegate {
             self.error = error.userDescription
         case .roomStatus(let status):
             self.status = status
+            isHost = status.players.first(where: { $0.id == playerID })?.isHost ?? false
         // TODO: Kicked message
         // case .kicked:
         //    delegate?.kicked()
+        case .gameStatus(let status):
+            delegate?.inGame(with: status)
         default:
             log.error("Message is not supported by this class")
         }
