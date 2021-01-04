@@ -77,9 +77,8 @@ extension RoomViewModel: ConnectionDelegate {
         case .roomStatus(let status):
             self.status = status
             isHost = status.players.first(where: { $0.id == playerID })?.isHost ?? false
-        // TODO: Kicked message
-        // case .kicked:
-        //    delegate?.kicked()
+        case .kicked:
+            delegate?.kicked()
         case .gameStatus(let status):
             delegate?.inGame(with: status)
         default:

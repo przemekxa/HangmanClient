@@ -12,6 +12,7 @@ enum InMessage: Equatable {
     case error(MessageError)
     case roomSettings(PossibleRoomSettings)
     case roomStatus(RoomStatus)
+    case kicked
     case gameStatus(GameStatus)
     case scoreboard([PlayerScoreboard])
 
@@ -21,17 +22,19 @@ enum InMessage: Equatable {
 
         switch raw.type {
         case .loggedIn:
-            parsed = Self.loggedIn(raw.data)
+            parsed = .loggedIn(raw.data)
         case .error:
-            parsed = Self.error(raw.data)
+            parsed = .error(raw.data)
         case .roomSettings:
-            parsed = Self.roomSettings(raw.data)
+            parsed = .roomSettings(raw.data)
         case .roomStatus:
-            parsed = Self.roomStatus(raw.data)
+            parsed = .roomStatus(raw.data)
+        case .kicked:
+            parsed = .kicked
         case .gameStatus:
-            parsed = Self.gameStatus(raw.data)
+            parsed = .gameStatus(raw.data)
         case .scoreBoard:
-            parsed = Self.scoreboard(raw.data)
+            parsed = .scoreboard(raw.data)
         default:
             break
         }
@@ -106,10 +109,11 @@ extension InMessage {
         let gameTime = UInt16(bigEndian: Data(data[3...4]))
         let healthPoints = data[5]
         let roomID = String(data: Data(data[6...11]), encoding: .ascii)!
-        let playerCount = data[12]
+        let maxPlayers = data[12]
+        let playerCount = data[13]
 
         var players = [Player]()
-        var i = 13
+        var i = 14
         while players.count < playerCount {
             let id = UInt16(bigEndian: Data(data[i...i+1]))
             print("ID = \(id)")
@@ -129,6 +133,7 @@ extension InMessage {
                                 gameTime: gameTime,
                                 healthPoints: healthPoints,
                                 id: roomID,
+                                maxPlayers: maxPlayers,
                                 players: players)
 
         return .roomStatus(status)

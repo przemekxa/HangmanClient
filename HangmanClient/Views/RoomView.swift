@@ -88,7 +88,7 @@ struct RoomView_Previews: PreviewProvider {
     static var previews: some View {
         RoomView(viewModel: RoomViewModel(Connection(hostname: "127.0.0.1", port: 1234),
                                             playerID: 456,
-                                            initialStatus: RoomStatus(language: Language("pl"), wordLength: 8, gameTime: 30, healthPoints: 4, id: "123457", players: [Player(id: 123, nick: "One"), Player(id: 456, nick: "Other", isHost: true)])))
+                                            initialStatus: RoomStatus(language: Language("pl"), wordLength: 8, gameTime: 30, healthPoints: 4, id: "123457", maxPlayers: 5, players: [Player(id: 123, nick: "One"), Player(id: 456, nick: "Other", isHost: true)])))
             .frame(width: 800, height: 600.0)
     }
 }

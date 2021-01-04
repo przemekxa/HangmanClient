@@ -28,6 +28,7 @@ enum MessageType: UInt8, Equatable {
     case error = 0x81
     case roomSettings = 0xa1
     case roomStatus = 0xa2
+    case kicked = 0xa3
     case gameStatus = 0xb1
     case scoreBoard = 0xb2
 }

@@ -58,6 +58,7 @@ struct RoomStatus: Equatable {
     let gameTime: UInt16
     let healthPoints: UInt8
     let id: String
+    let maxPlayers: UInt8
     let players: [Player]
 }
 

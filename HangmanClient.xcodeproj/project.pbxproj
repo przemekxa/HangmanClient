@@ -33,7 +33,18 @@
 		0167637025A1EF93002D08A4 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0167636F25A1EF93002D08A4 /* Navigation.swift */; };
 		0167637325A1FF6D002D08A4 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0167637225A1FF6D002D08A4 /* HomeViewModel.swift */; };
 		0167637825A227C3002D08A4 /* RoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0167637725A227C3002D08A4 /* RoomViewModel.swift */; };
+		01EFE6AD25A343FF003DD506 /* HangmanClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EFE6AC25A343FF003DD506 /* HangmanClientTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		01EFE6AF25A343FF003DD506 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 011BB93925881B3200439BE3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 011BB94025881B3200439BE3;
+			remoteInfo = HangmanClient;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0103D23C25A2666600DCAA9A /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
@@ -65,10 +76,20 @@
 		0167636F25A1EF93002D08A4 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		0167637225A1FF6D002D08A4 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		0167637725A227C3002D08A4 /* RoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewModel.swift; sourceTree = "<group>"; };
+		01EFE6AA25A343FF003DD506 /* HangmanClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HangmanClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		01EFE6AC25A343FF003DD506 /* HangmanClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangmanClientTests.swift; sourceTree = "<group>"; };
+		01EFE6AE25A343FF003DD506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		011BB93E25881B3200439BE3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01EFE6A725A343FF003DD506 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -92,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				011BB94325881B3200439BE3 /* HangmanClient */,
+				01EFE6AB25A343FF003DD506 /* HangmanClientTests */,
 				011BB94225881B3200439BE3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -100,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				011BB94125881B3200439BE3 /* HangmanClient.app */,
+				01EFE6AA25A343FF003DD506 /* HangmanClientTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -177,6 +200,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		01EFE6AB25A343FF003DD506 /* HangmanClientTests */ = {
+			isa = PBXGroup;
+			children = (
+				01EFE6AC25A343FF003DD506 /* HangmanClientTests.swift */,
+				01EFE6AE25A343FF003DD506 /* Info.plist */,
+			);
+			path = HangmanClientTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -197,17 +229,39 @@
 			productReference = 011BB94125881B3200439BE3 /* HangmanClient.app */;
 			productType = "com.apple.product-type.application";
 		};
+		01EFE6A925A343FF003DD506 /* HangmanClientTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01EFE6B325A343FF003DD506 /* Build configuration list for PBXNativeTarget "HangmanClientTests" */;
+			buildPhases = (
+				01EFE6A625A343FF003DD506 /* Sources */,
+				01EFE6A725A343FF003DD506 /* Frameworks */,
+				01EFE6A825A343FF003DD506 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				01EFE6B025A343FF003DD506 /* PBXTargetDependency */,
+			);
+			name = HangmanClientTests;
+			productName = HangmanClientTests;
+			productReference = 01EFE6AA25A343FF003DD506 /* HangmanClientTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		011BB93925881B3200439BE3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1220;
+				LastSwiftUpdateCheck = 1230;
 				LastUpgradeCheck = 1220;
 				TargetAttributes = {
 					011BB94025881B3200439BE3 = {
 						CreatedOnToolsVersion = 12.2;
+					};
+					01EFE6A925A343FF003DD506 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 011BB94025881B3200439BE3;
 					};
 				};
 			};
@@ -225,6 +279,7 @@
 			projectRoot = "";
 			targets = (
 				011BB94025881B3200439BE3 /* HangmanClient */,
+				01EFE6A925A343FF003DD506 /* HangmanClientTests */,
 			);
 		};
 /* End PBXProject section */
@@ -237,6 +292,13 @@
 				011BB94F25881B3400439BE3 /* Main.storyboard in Resources */,
 				011BB94C25881B3400439BE3 /* Preview Assets.xcassets in Resources */,
 				011BB94925881B3400439BE3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01EFE6A825A343FF003DD506 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,7 +335,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		01EFE6A625A343FF003DD506 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01EFE6AD25A343FF003DD506 /* HangmanClientTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		01EFE6B025A343FF003DD506 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 011BB94025881B3200439BE3 /* HangmanClient */;
+			targetProxy = 01EFE6AF25A343FF003DD506 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		011BB94D25881B3400439BE3 /* Main.storyboard */ = {
@@ -446,6 +524,44 @@
 			};
 			name = Release;
 		};
+		01EFE6B125A343FF003DD506 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = HangmanClientTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.poznan.HangmanClientTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HangmanClient.app/Contents/MacOS/HangmanClient";
+			};
+			name = Debug;
+		};
+		01EFE6B225A343FF003DD506 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = HangmanClientTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.poznan.HangmanClientTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HangmanClient.app/Contents/MacOS/HangmanClient";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -463,6 +579,15 @@
 			buildConfigurations = (
 				011BB95525881B3400439BE3 /* Debug */,
 				011BB95625881B3400439BE3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		01EFE6B325A343FF003DD506 /* Build configuration list for PBXNativeTarget "HangmanClientTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01EFE6B125A343FF003DD506 /* Debug */,
+				01EFE6B225A343FF003DD506 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
