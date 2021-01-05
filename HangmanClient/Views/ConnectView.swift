@@ -47,7 +47,6 @@ struct ConnectView: View {
                 }
             }
 
-
             Spacer()
 
             Text("Copyright")

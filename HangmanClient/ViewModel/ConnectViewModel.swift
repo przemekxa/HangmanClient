@@ -9,7 +9,6 @@ import Foundation
 import Combine
 import Network
 
-
 protocol ConnectDelegate: AnyObject {
     func connected(connection: Connection)
 }
@@ -21,7 +20,7 @@ class ConnectViewModel: ObservableObject, ConnectionDelegate {
     @Published var port: String = "1234"
     @Published var canConnect: Bool = true
     @Published var isConnecting: Bool = false
-    @Published var connectionError: String? = nil
+    @Published var connectionError: String?
 
     private let log = Log("🔗ConnectVM")
     private var cancellabes = Set<AnyCancellable>()
@@ -35,7 +34,7 @@ class ConnectViewModel: ObservableObject, ConnectionDelegate {
         } else {
             log.debug("Init")
         }
-        
+
         self.connectionError = error
 
         // Check if the port is correct

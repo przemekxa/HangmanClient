@@ -31,7 +31,7 @@ struct HomeView: View {
                 Text("Zasady gry")
                     .font(.callout)
 
-                Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam bibendum tellus interdum, ornare turpis in, aliquet nulla. Suspendisse convallis eros a nisl placerat, ac laoreet elit molestie. Mauris ultrices leo lobortis augue semper, et egestas mauris scelerisque. Proin sagittis imperdiet mattis. Phasellus consequat nulla id ultrices vulputate. Morbi eros ex, faucibus vitae bibendum vitae, ultricies nec nulla. Sed ultricies ut purus id mattis. Aenean tristique, tellus in sagittis finibus, ipsum est elementum urna, sed scelerisque lectus velit ut lectus. Nam eget elit sodales, bibendum orci vitae, ultrices lorem. In viverra venenatis quam sed tempus.")
+                Text(String(repeating: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", count: 20))
                     .padding(.bottom, 16.0)
 
                 GroupBox(label: Text("Nazwa użytkownika"), content: {

@@ -23,7 +23,7 @@ struct PlayerInGame: Equatable, Identifiable {
     let guessed: Bool
 }
 
-struct PlayerScoreboard: Equatable, Identifiable {
+struct PlayerScoreboard: Equatable, Hashable, Identifiable {
     let id: Player.ID
     let nick: String
     let points: UInt16

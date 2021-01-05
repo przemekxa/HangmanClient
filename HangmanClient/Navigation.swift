@@ -11,11 +11,8 @@ import SwiftUI
 class Navigation {
 
     private var connectWindow: NSWindow?
-    private var homeWindow: NSWindow?
-    private var roomWindow: NSWindow?
-    private var gameWindow: NSWindow?
-
-    private var lastRect: NSRect?
+    private var mainWindow: NSWindow?
+    private let toolbarController = ToolbarController()
 
     private let log = Log("🧭Navigation")
     private var connection: Connection?
@@ -24,16 +21,16 @@ class Navigation {
 
     init() {
         // Show 'Connect' window first
-        makeConnectWindow()
+        showConnectWindow()
     }
 
     /// Make a connect window
-    private func makeConnectWindow(with error: String? = nil) {
+    private func showConnectWindow(with error: String? = nil) {
         let viewModel = ConnectViewModel(error)
         viewModel.delegate = self
 
         let window = NSWindow(
-            contentRect:NSRect(x: 0, y: 0, width: 300, height: 400),
+            contentRect: NSRect(x: 0, y: 0, width: 300, height: 400),
             styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
             backing: .buffered,
             defer: false)
@@ -42,55 +39,95 @@ class Navigation {
         window.title = "Wisielec — połącz"
         window.center()
         window.setFrameAutosaveName("HangmanConnect")
-        window.contentView = NSHostingView(rootView:  ConnectView(viewModel: viewModel))
+        window.contentView = NSHostingView(rootView: ConnectView(viewModel: viewModel))
         window.makeKeyAndOrderFront(nil)
         connectWindow = window
 
     }
 
+    /// Make a main window
+    /// - Returns: The created main window
+    private func makeMainWindow() -> NSWindow {
+        let window = NSWindow(
+            contentRect: NSRect(x: 0, y: 0, width: 800, height: 600),
+            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
+            backing: .buffered,
+            defer: false)
+        window.isReleasedWhenClosed = false
+        window.center()
+        window.setFrameAutosaveName("HangmanMain")
+        let toolbar = NSToolbar()
+        toolbar.delegate = toolbarController
+        window.toolbar = toolbar
+
+        mainWindow = window
+        return window
+    }
+
     /// Make a home window
-    private func makeHomeWindow(with error: String? = nil) {
+    private func showHomeWindow(with error: String? = nil) {
+
         let viewModel = HomeViewModel(connection!, possibleSettings: possibleSettings)
         viewModel.delegate = self
 
-        let window = NSWindow(
-            contentRect: lastRect ?? NSRect(x: 0, y: 0, width: 800, height: 600),
-            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
-            backing: .buffered,
-            defer: false)
+        let window = mainWindow ?? makeMainWindow()
 
-        window.isReleasedWhenClosed = false
+        window.toolbar = nil
+
         window.title = "Wisielec"
-        window.center()
-        window.setFrameAutosaveName("HangmanMain")
-        window.contentView = NSHostingView(rootView:  HomeView(viewModel: viewModel))
+        window.contentView = NSHostingView(rootView: HomeView(viewModel: viewModel))
         window.makeKeyAndOrderFront(nil)
-        homeWindow = window
     }
 
     /// Make a room window
-    private func makeRoomWindow(with playerID: Player.ID, status initialStatus: RoomStatus) {
-        let viewModel = RoomViewModel(connection!, playerID: playerID, initialStatus: initialStatus)
+    private func showRoomWindow(status initialStatus: RoomStatus) {
+        let viewModel = RoomViewModel(connection!, playerID: playerID!, initialStatus: initialStatus)
         viewModel.delegate = self
 
-        let window = NSWindow(
-            contentRect: lastRect ?? NSRect(x: 0, y: 0, width: 800, height: 600),
-            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
-            backing: .buffered,
-            defer: false)
+        let window = mainWindow ?? makeMainWindow()
 
-        window.isReleasedWhenClosed = false
+        toolbarController.state = .inRoom
+        let toolbar = NSToolbar()
+        toolbar.delegate = toolbarController
+        window.toolbar = toolbar
+
         window.title = "Wisielec — pokój"
-        window.center()
-        window.setFrameAutosaveName("HangmanRoom")
-        window.contentView = NSHostingView(rootView:  RoomView(viewModel: viewModel))
+        window.contentView = NSHostingView(rootView: RoomView(viewModel: viewModel))
         window.makeKeyAndOrderFront(nil)
-        roomWindow = window
+    }
+
+    /// Make an in-game window
+    private func showGameWindow(status initialStatus: GameStatus) {
+        let viewModel = GameViewModel(connection!, playerID: playerID!, initialStatus: initialStatus)
+        viewModel.delegate = self
+
+        let window = mainWindow ?? makeMainWindow()
+        window.title = "Wisielec — gra"
+        window.contentView = NSHostingView(rootView: GameView(viewModel: viewModel))
+        window.makeKeyAndOrderFront(nil)
+    }
+
+    /// Make a scoreboard window
+    private func showScoreboardWindow(status: [PlayerScoreboard]) {
+        let viewModel = ScoreboardViewModel(connection!, scoreboard: status)
+        viewModel.delegate = self
+
+        let window = mainWindow ?? makeMainWindow()
+
+        toolbarController.state = .inScoreboard
+        let toolbar = NSToolbar()
+        toolbar.delegate = toolbarController
+        window.toolbar = toolbar
+
+        window.title = "Wisielec — wyniki"
+        window.contentView = NSHostingView(rootView: ScoreboardView(viewModel: viewModel))
+        window.makeKeyAndOrderFront(nil)
     }
 }
 
 extension Navigation: ConnectDelegate {
 
+    // Connected to the server
     func connected(connection: Connection) {
         log.debug("Connected to the server")
         self.connection = connection
@@ -98,72 +135,82 @@ extension Navigation: ConnectDelegate {
         connectWindow?.close()
         connectWindow = nil
 
-        makeHomeWindow()
+        showHomeWindow()
+    }
+
+    // Disconnected from the server
+    func disconnected() {
+        log.debug("Disconnected from the server")
+        self.connection = nil
+
+        mainWindow?.close()
+        mainWindow = nil
+
+        showConnectWindow(with: "Utracono połączenie")
     }
 
 }
 
 extension Navigation: HomeDelegate {
 
+    // User logged in
     func loggedIn(with playerID: Player.ID) {
         log.debug("Player logged in with id = %d", playerID)
         self.playerID = playerID
     }
 
+    // Received possible settings
     func receivedSettings(possibleSettings: PossibleRoomSettings) {
         log.debug("Player received possible room settings")
         self.possibleSettings = possibleSettings
     }
 
-    func disconnected() {
-        log.debug("Disconnected from the server")
-        self.connection = nil
-
-        homeWindow?.close()
-        homeWindow = nil
-
-        makeConnectWindow(with: "Utracono połączenie")
-    }
-
+    // User joined a room
     func inRoom(with playerID: Player.ID, status: RoomStatus) {
         log.debug("Player inside a room")
-
-        lastRect = homeWindow?.frame
-        homeWindow?.close()
-        homeWindow = nil
-
-        makeRoomWindow(with: playerID, status: status)
+        showRoomWindow(status: status)
     }
 
+    // User in game
     func inGame(with status: GameStatus) {
         log.debug("Player in game")
-
-        // TODO: Handle in-game
+        showGameWindow(status: status)
     }
 
 }
 
 extension Navigation: RoomDelegate {
 
+    // User left the room
     func left() {
         log.debug("Player left the room")
-
-        lastRect = roomWindow?.frame
-        roomWindow?.close()
-        roomWindow = nil
-
-        makeHomeWindow()
+        showHomeWindow()
     }
 
+    // User was kicked from the room
     func kicked() {
         log.debug("Player was kicked from the room")
-
-        lastRect = roomWindow?.frame
-        roomWindow?.close()
-        roomWindow = nil
-
-        makeHomeWindow(with: "Zostałeś wyrzucony z pokoju")
+        showHomeWindow(with: "Zostałeś wyrzucony z pokoju")
     }
 
+}
+
+extension Navigation: GameDelegate {
+
+    // The game has ended
+    func scoreboard(players: [PlayerScoreboard]) {
+        log.debug("Game ended")
+        showScoreboardWindow(status: players)
+    }
+
+}
+
+extension Navigation: ScoreboardDelegate {
+
+    // Close the scoreboard
+    func closeScoreboard() {
+        log.debug("Close scoreboard")
+        makeMainWindow()
+    }
 
 }

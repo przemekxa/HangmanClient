@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import Combine
 
 protocol RoomDelegate: AnyObject {
     func disconnected()
@@ -26,8 +26,7 @@ class RoomViewModel: ObservableObject {
     private let log = Log("👥RoomVM")
     private var connection: Connection
     weak var delegate: RoomDelegate?
-
-
+    private var cancellables = Set<AnyCancellable>()
 
     init(_ connection: Connection, playerID: Player.ID, initialStatus status: RoomStatus) {
         self.connection = connection
@@ -35,6 +34,17 @@ class RoomViewModel: ObservableObject {
         self.status = status
         self.isHost = status.players.first(where: { $0.id == playerID })?.isHost ?? false
         self.connection.delegate = self
+
+        NotificationCenter.default
+            .publisher(for: .leaveRoom)
+            .sink { [weak self] _ in self?.leave() }
+            .store(in: &cancellables)
+
+        NotificationCenter.default
+            .publisher(for: .startGame)
+            .sink { [weak self] _ in self?.play() }
+            .store(in: &cancellables)
+
         log.debug("Init")
     }
 
@@ -64,6 +74,7 @@ class RoomViewModel: ObservableObject {
 extension RoomViewModel: ConnectionDelegate {
 
     func stateDidChange(to state: Connection.State) {
+        log.debug("State did change to: %@", String(describing: state))
         if state != .ready {
             delegate?.disconnected()
         }
@@ -85,6 +96,5 @@ extension RoomViewModel: ConnectionDelegate {
             log.error("Message is not supported by this class")
         }
     }
-
 
 }

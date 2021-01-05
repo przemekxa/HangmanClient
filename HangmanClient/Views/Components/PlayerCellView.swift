@@ -20,8 +20,13 @@ struct PlayerCellView: View {
         VStack {
             HStack {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(player.nick)
-                        .font(.headline)
+                    HStack {
+                        Text(player.nick)
+                            .font(.headline)
+                            .fontWeight(.bold)
+                        Text("(#" + String(player.id) + ")")
+                            .font(.caption)
+                    }
                     HStack {
                         if player.isHost {
                             Text("ZARZĄDCA")

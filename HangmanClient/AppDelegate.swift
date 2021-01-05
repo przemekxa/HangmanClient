@@ -14,7 +14,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var window: NSWindow!
     var navigation: Navigation!
 
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         navigation = Navigation()
     }
@@ -27,6 +26,4 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         true
     }
 
-
 }
-

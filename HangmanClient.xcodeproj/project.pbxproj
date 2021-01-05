@@ -10,6 +10,9 @@
 		0103D23D25A2666600DCAA9A /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0103D23C25A2666600DCAA9A /* Defaults.swift */; };
 		0103D24025A26BEA00DCAA9A /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0103D23F25A26BEA00DCAA9A /* GameView.swift */; };
 		0103D24325A26FE700DCAA9A /* WordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0103D24225A26FE700DCAA9A /* WordView.swift */; };
+		0105DDCD25A4C96500EB14A8 /* ToolbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0105DDCC25A4C96500EB14A8 /* ToolbarController.swift */; };
+		0105DDD125A4CE9400EB14A8 /* ScoreboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0105DDD025A4CE9400EB14A8 /* ScoreboardView.swift */; };
+		0105DDD725A4D2EF00EB14A8 /* ScoreboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0105DDD625A4D2EF00EB14A8 /* ScoreboardViewModel.swift */; };
 		011BB94525881B3200439BE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011BB94425881B3200439BE3 /* AppDelegate.swift */; };
 		011BB94925881B3400439BE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 011BB94825881B3400439BE3 /* Assets.xcassets */; };
 		011BB94C25881B3400439BE3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 011BB94B25881B3400439BE3 /* Preview Assets.xcassets */; };
@@ -33,6 +36,8 @@
 		0167637025A1EF93002D08A4 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0167636F25A1EF93002D08A4 /* Navigation.swift */; };
 		0167637325A1FF6D002D08A4 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0167637225A1FF6D002D08A4 /* HomeViewModel.swift */; };
 		0167637825A227C3002D08A4 /* RoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0167637725A227C3002D08A4 /* RoomViewModel.swift */; };
+		016C4B2E25A4A49D00C922C6 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016C4B2D25A4A49D00C922C6 /* GameViewModel.swift */; };
+		016C4B3225A4B47800C922C6 /* PlayerInGameCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016C4B3125A4B47800C922C6 /* PlayerInGameCellView.swift */; };
 		01EFE6AD25A343FF003DD506 /* HangmanClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EFE6AC25A343FF003DD506 /* HangmanClientTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +55,9 @@
 		0103D23C25A2666600DCAA9A /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		0103D23F25A26BEA00DCAA9A /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		0103D24225A26FE700DCAA9A /* WordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordView.swift; sourceTree = "<group>"; };
+		0105DDCC25A4C96500EB14A8 /* ToolbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarController.swift; sourceTree = "<group>"; };
+		0105DDD025A4CE9400EB14A8 /* ScoreboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardView.swift; sourceTree = "<group>"; };
+		0105DDD625A4D2EF00EB14A8 /* ScoreboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardViewModel.swift; sourceTree = "<group>"; };
 		011BB94125881B3200439BE3 /* HangmanClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HangmanClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		011BB94425881B3200439BE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		011BB94825881B3400439BE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,6 +84,8 @@
 		0167636F25A1EF93002D08A4 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		0167637225A1FF6D002D08A4 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		0167637725A227C3002D08A4 /* RoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewModel.swift; sourceTree = "<group>"; };
+		016C4B2D25A4A49D00C922C6 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		016C4B3125A4B47800C922C6 /* PlayerInGameCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInGameCellView.swift; sourceTree = "<group>"; };
 		01EFE6AA25A343FF003DD506 /* HangmanClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HangmanClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		01EFE6AC25A343FF003DD506 /* HangmanClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangmanClientTests.swift; sourceTree = "<group>"; };
 		01EFE6AE25A343FF003DD506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -105,6 +115,7 @@
 				014EB4A325A22D17006C1D97 /* PlayerCellView.swift */,
 				012128CD25A22F8B000D4DF6 /* RoomInfoView.swift */,
 				0103D24225A26FE700DCAA9A /* WordView.swift */,
+				016C4B3125A4B47800C922C6 /* PlayerInGameCellView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -137,6 +148,7 @@
 				0167635325A1EBB0002D08A4 /* Connection.swift */,
 				011BB94425881B3200439BE3 /* AppDelegate.swift */,
 				0167636F25A1EF93002D08A4 /* Navigation.swift */,
+				0105DDCC25A4C96500EB14A8 /* ToolbarController.swift */,
 				0103D23C25A2666600DCAA9A /* Defaults.swift */,
 				0167636025A1EBFC002D08A4 /* Int+Extensions.swift */,
 				0167636425A1EBFC002D08A4 /* OSLog+Extensions.swift */,
@@ -166,6 +178,7 @@
 				011BB95B25881B9B00439BE3 /* CreateRoom.swift */,
 				011BB95D25881B9B00439BE3 /* RoomView.swift */,
 				0103D23F25A26BEA00DCAA9A /* GameView.swift */,
+				0105DDD025A4CE9400EB14A8 /* ScoreboardView.swift */,
 				0103D24725A276B600DCAA9A /* Components */,
 			);
 			path = Views;
@@ -177,6 +190,8 @@
 				0167634F25A1E987002D08A4 /* ConnectViewModel.swift */,
 				0167637225A1FF6D002D08A4 /* HomeViewModel.swift */,
 				0167637725A227C3002D08A4 /* RoomViewModel.swift */,
+				016C4B2D25A4A49D00C922C6 /* GameViewModel.swift */,
+				0105DDD625A4D2EF00EB14A8 /* ScoreboardViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -310,8 +325,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0167636B25A1EBFC002D08A4 /* OSLog+Extensions.swift in Sources */,
+				0105DDD125A4CE9400EB14A8 /* ScoreboardView.swift in Sources */,
 				011BB96125881C6700439BE3 /* JoinRoom.swift in Sources */,
 				012128CE25A22F8B000D4DF6 /* RoomInfoView.swift in Sources */,
+				0105DDD725A4D2EF00EB14A8 /* ScoreboardViewModel.swift in Sources */,
 				0167635425A1EBB0002D08A4 /* Connection.swift in Sources */,
 				0167637325A1FF6D002D08A4 /* HomeViewModel.swift in Sources */,
 				014EB4A425A22D17006C1D97 /* PlayerCellView.swift in Sources */,
@@ -321,7 +338,10 @@
 				011BB96025881C6700439BE3 /* CreateRoom.swift in Sources */,
 				0167636825A1EBFC002D08A4 /* Int+Extensions.swift in Sources */,
 				0167636525A1EBFC002D08A4 /* OutMessage.swift in Sources */,
+				016C4B2E25A4A49D00C922C6 /* GameViewModel.swift in Sources */,
+				0105DDCD25A4C96500EB14A8 /* ToolbarController.swift in Sources */,
 				0167637025A1EF93002D08A4 /* Navigation.swift in Sources */,
+				016C4B3225A4B47800C922C6 /* PlayerInGameCellView.swift in Sources */,
 				0103D24025A26BEA00DCAA9A /* GameView.swift in Sources */,
 				011BB95F25881C6700439BE3 /* RoomView.swift in Sources */,
 				0167636625A1EBFC002D08A4 /* Message.swift in Sources */,

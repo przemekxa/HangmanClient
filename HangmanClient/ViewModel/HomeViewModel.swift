@@ -65,8 +65,9 @@ class HomeViewModel: ObservableObject {
 }
 
 extension HomeViewModel: ConnectionDelegate {
-    
+
     func stateDidChange(to state: Connection.State) {
+        log.debug("State did change to: %@", String(describing: state))
         if state != .ready {
             delegate?.disconnected()
         }
@@ -92,6 +93,5 @@ extension HomeViewModel: ConnectionDelegate {
             log.error("Message is not supported by this class")
         }
     }
-
 
 }

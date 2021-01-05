@@ -19,7 +19,6 @@ struct CreateRoom: View {
         self._maxPlayers = State(initialValue: Double(possibleSettings.playerCount.lowerBound))
     }
 
-
     var possibleSettings: PossibleRoomSettings
 
     @ObservedObject
@@ -117,7 +116,8 @@ struct CreateRoom_Previews: PreviewProvider {
                                          wordLength: 3...30,
                                          gameTime: 30...300,
                                          healthPoints: 1...5,
-                                         playerCount: 2...4), viewModel: HomeViewModel(Connection(hostname: "127.0.0.1", port: 1234)))
+                                         playerCount: 2...4),
+                   viewModel: HomeViewModel(Connection(hostname: "127.0.0.1", port: 1234)))
             .frame(width: 800.0, height: 600.0)
     }
 }

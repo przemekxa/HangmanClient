@@ -14,7 +14,9 @@ class Defaults {
 
     static var playerID: Player.ID? {
         get {
-            Self.userDefaults.object(forKey: "playerID") != nil ? UInt16(Self.userDefaults.integer(forKey: "playerID")) : nil
+            Self.userDefaults.object(forKey: "playerID") != nil ?
+                UInt16(Self.userDefaults.integer(forKey: "playerID")) :
+                nil
         }
         set {
             if let value = newValue {
