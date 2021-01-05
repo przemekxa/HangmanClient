@@ -73,7 +73,7 @@ struct RoomView: View {
             }
 
         }
-        .frame(maxHeight: 800)
+        .frame(minWidth: 700, minHeight: 300, maxHeight: 600)
         .padding(16.0)
     }
 

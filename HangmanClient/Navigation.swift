@@ -49,7 +49,7 @@ class Navigation {
     /// - Returns: The created main window
     private func makeMainWindow() -> NSWindow {
         let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 800, height: 600),
+            contentRect: NSRect(x: 0, y: 0, width: 800, height: 400),
             styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
             backing: .buffered,
             defer: false)
@@ -67,7 +67,7 @@ class Navigation {
     /// Show a home window
     private func showHomeWindow(with error: String? = nil) {
 
-        let viewModel = HomeViewModel(connection!, possibleSettings: possibleSettings)
+        let viewModel = HomeViewModel(connection!, possibleSettings: possibleSettings, error: error)
         viewModel.delegate = self
 
         let window = mainWindow ?? makeMainWindow()
