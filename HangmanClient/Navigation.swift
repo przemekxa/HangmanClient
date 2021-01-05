@@ -64,7 +64,7 @@ class Navigation {
         return window
     }
 
-    /// Make a home window
+    /// Show a home window
     private func showHomeWindow(with error: String? = nil) {
 
         let viewModel = HomeViewModel(connection!, possibleSettings: possibleSettings)
@@ -79,7 +79,7 @@ class Navigation {
         window.makeKeyAndOrderFront(nil)
     }
 
-    /// Make a room window
+    /// Show a room window
     private func showRoomWindow(status initialStatus: RoomStatus) {
         let viewModel = RoomViewModel(connection!, playerID: playerID!, initialStatus: initialStatus)
         viewModel.delegate = self
@@ -96,7 +96,7 @@ class Navigation {
         window.makeKeyAndOrderFront(nil)
     }
 
-    /// Make an in-game window
+    /// Show an in-game window
     private func showGameWindow(status initialStatus: GameStatus) {
         let viewModel = GameViewModel(connection!, playerID: playerID!, initialStatus: initialStatus)
         viewModel.delegate = self
@@ -107,7 +107,7 @@ class Navigation {
         window.makeKeyAndOrderFront(nil)
     }
 
-    /// Make a scoreboard window
+    /// Show a scoreboard window
     private func showScoreboardWindow(status: [PlayerScoreboard]) {
         let viewModel = ScoreboardViewModel(connection!, scoreboard: status)
         viewModel.delegate = self
@@ -210,7 +210,7 @@ extension Navigation: ScoreboardDelegate {
     // Close the scoreboard
     func closeScoreboard() {
         log.debug("Close scoreboard")
-        makeMainWindow()
+        showHomeWindow()
     }
 
 }

@@ -143,11 +143,11 @@ extension InMessage {
     private static func gameStatus(_ data: Data?) -> Self? {
         guard let data = data, data.count >= 4 else { return nil }
 
-        let remainingTime = Double(UInt16(bigEndian: Data(data[0...1])))
-        let playerCount = data[2]
+        let endTime = Date(timeIntervalSince1970: Double(UInt64(bigEndian: Data(data[0...7]))))
+        let playerCount = data[8]
 
         var players = [PlayerInGame]()
-        var i = 3
+        var i = 9
         while players.count < playerCount {
             let id = UInt16(bigEndian: Data(data[i...i+1]))
             let nickLength = Int(data[i+2])
@@ -169,7 +169,7 @@ extension InMessage {
         let word = Array(String(data: Data(data[i+1..<i+1+wordLength]), encoding: .utf8)!)
             .map { $0 == Character(Unicode.Scalar(0)) ? nil : $0 }
 
-        return .gameStatus(GameStatus(remainingTime: remainingTime, players: players, word: word))
+        return .gameStatus(GameStatus(endTime: endTime, players: players, word: word))
     }
 
     /// Parse 'gameStatus' message

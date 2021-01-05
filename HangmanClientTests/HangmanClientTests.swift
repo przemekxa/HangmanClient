@@ -155,7 +155,7 @@ class HangmanClientTests: XCTestCase {
 
     func testGameStatus() {
         var data: [UInt8] = [
-            0x01, 0x23, // time left
+            0x00, 0x00, 0x00, 0x00, 0x60, 0x17, 0xed, 0x40, // end time
             3 // number of players
         ]
         data += [0x11, 0x22, 3] + "one".utf8 + [0x00, 0x10, 2, 0]
@@ -168,7 +168,7 @@ class HangmanClientTests: XCTestCase {
         XCTAssertNotNil(msg)
 
         if case .gameStatus(let status) = msg! {
-            XCTAssertEqual(status.remainingTime, Double(0x0123))
+            XCTAssertEqual(status.endTime, Date(timeIntervalSince1970: Double(0x6017ED40)))
             XCTAssertEqual(status.players.count, 3)
             XCTAssertEqual(status.players[0], PlayerInGame(id: 0x1122,
                                                            nick: "one",

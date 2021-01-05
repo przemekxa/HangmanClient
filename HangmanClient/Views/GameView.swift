@@ -160,7 +160,7 @@ struct GameView_Previews: PreviewProvider {
                      guessed: true)
     ]
 
-    static let status = GameStatus(remainingTime: 135,
+    static let status = GameStatus(endTime: Date().addingTimeInterval(45),
                                    players: players,
                                    word: ["a", "b", nil, nil, "e"])
 

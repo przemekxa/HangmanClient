@@ -49,7 +49,7 @@ class GameViewModel: ObservableObject {
         you = status.players.first { $0.id == playerID }!
         players = status.players.filter { $0.id != playerID }
         word = status.word
-        endTime = Date().addingTimeInterval(status.remainingTime)
+        endTime = status.endTime
         remainingTime = formatter.string(from: Date(), to: endTime) ?? "-"
 
         // Update timer

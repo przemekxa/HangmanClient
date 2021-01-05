@@ -65,7 +65,7 @@ struct RoomStatus: Equatable {
 // MARK: - Game status
 
 struct GameStatus: Equatable {
-    let remainingTime: TimeInterval
+    let endTime: Date
     let players: [PlayerInGame]
     let word: [Character?]
 }
