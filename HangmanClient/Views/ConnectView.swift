@@ -27,9 +27,11 @@ struct ConnectView: View {
                         .padding(.bottom, 12)
 
                     Text("Port:")
-                    TextField("Port", text: $viewModel.port)
-                        .multilineTextAlignment(.center)
-                        .padding(.bottom, 12)
+                    TextField("Port", text: $viewModel.port, onCommit: {
+                        viewModel.connect()
+                    })
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom, 12)
 
                     Button(viewModel.isConnecting ? "Łączenie..." : "Połącz") {
                         viewModel.connect()

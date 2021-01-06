@@ -57,7 +57,7 @@ struct PlayerInGameCellView_Previews: PreviewProvider {
                                      points: 1000,
                                      remainingHealth: 5,
                                      guessed: false)
-    
+
     static var previews: some View {
         PlayerInGameCellView(player: .constant(player))
     }

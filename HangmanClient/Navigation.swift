@@ -80,13 +80,13 @@ class Navigation {
     }
 
     /// Show a room window
-    private func showRoomWindow(status initialStatus: RoomStatus) {
+    private func showRoomWindow(status initialStatus: RoomStatus, isHost: Bool) {
         let viewModel = RoomViewModel(connection!, playerID: playerID!, initialStatus: initialStatus)
         viewModel.delegate = self
 
         let window = mainWindow ?? makeMainWindow()
 
-        toolbarController.state = .inRoom
+        toolbarController.state = isHost ? .inRoomHost : .inRoom
         let toolbar = NSToolbar()
         toolbar.delegate = toolbarController
         window.toolbar = toolbar
@@ -172,7 +172,7 @@ extension Navigation: HomeDelegate {
     // User joined a room
     func inRoom(with playerID: Player.ID, status: RoomStatus) {
         log.debug("Player inside a room")
-        showRoomWindow(status: status)
+        showRoomWindow(status: status, isHost: status.players.first(where: { $0.id == playerID })?.isHost ?? false)
     }
 
     // User in game
@@ -201,7 +201,7 @@ extension Navigation: RoomDelegate {
     func hostChanged(isHost: Bool) {
         log.debug("Host changed to %@", isHost ? "true" : "false")
         toolbarController.state = isHost ? .inRoomHost : .inRoom
-        
+
         if let toolbar = mainWindow?.toolbar {
             if isHost {
                 if toolbar.items.count == 1 {

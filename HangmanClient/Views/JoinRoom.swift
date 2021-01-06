@@ -24,12 +24,16 @@ struct JoinRoom: View {
 
             Text("Aby dołączyć do pokoju, wpisz 6-cyfrowy kod.")
 
-            TextField("PIN", text: $pin)
-                .font(.system(size: 32.0, weight: .semibold, design: .monospaced))
-                .lineLimit(1)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 32.0)
-                .padding(.vertical, 16.0)
+            TextField("PIN", text: $pin, onCommit: {
+                if verifyPin() {
+                    self.viewModel.joinRoom(with: pin)
+                }
+            })
+            .font(.system(size: 32.0, weight: .semibold, design: .monospaced))
+            .lineLimit(1)
+            .multilineTextAlignment(.center)
+            .padding(.horizontal, 32.0)
+            .padding(.vertical, 16.0)
 
             Button("Dołącz") {
                 self.viewModel.joinRoom(with: pin)

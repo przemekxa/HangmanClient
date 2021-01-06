@@ -84,7 +84,11 @@ struct GameView: View {
 
                 Text("Wpisz literę lub całe słowo, które chcesz odgadnąć")
 
-                TextField("Odgadywana litera lub słowo", text: $guessed)
+                TextField("Odgadywana litera lub słowo",
+                          text: $guessed, onCommit: {
+                            self.viewModel.guess(guessed)
+                            self.guessed = ""
+                          })
 
                 Button(action: {
                     self.viewModel.guess(guessed)

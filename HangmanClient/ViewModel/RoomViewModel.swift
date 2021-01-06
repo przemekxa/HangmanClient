@@ -90,7 +90,7 @@ extension RoomViewModel: ConnectionDelegate {
             self.status = status
             let previousIsHost = isHost
             isHost = status.players.first(where: { $0.id == playerID })?.isHost ?? false
-            
+
             if previousIsHost != isHost {
                 delegate?.hostChanged(isHost: isHost)
             }
