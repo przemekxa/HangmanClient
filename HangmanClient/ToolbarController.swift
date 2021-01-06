@@ -12,6 +12,7 @@ class ToolbarController: NSObject, NSToolbarDelegate {
     enum ToolbarState {
         case none
         case inRoom
+        case inRoomHost
         case inScoreboard
     }
 
@@ -22,6 +23,8 @@ class ToolbarController: NSObject, NSToolbarDelegate {
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         switch state {
         case .inRoom:
+            return [.leaveRoom]
+        case .inRoomHost:
             return [.leaveRoom, .startGame]
         case .inScoreboard:
             return [.goBack]

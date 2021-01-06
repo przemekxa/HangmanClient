@@ -12,6 +12,7 @@ protocol RoomDelegate: AnyObject {
     func disconnected()
     func left()
     func kicked()
+    func hostChanged(isHost: Bool)
     func inGame(with status: GameStatus)
 }
 
@@ -87,7 +88,12 @@ extension RoomViewModel: ConnectionDelegate {
             self.error = error.userDescription
         case .roomStatus(let status):
             self.status = status
+            let previousIsHost = isHost
             isHost = status.players.first(where: { $0.id == playerID })?.isHost ?? false
+            
+            if previousIsHost != isHost {
+                delegate?.hostChanged(isHost: isHost)
+            }
         case .kicked:
             delegate?.kicked()
         case .gameStatus(let status):

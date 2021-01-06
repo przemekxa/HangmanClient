@@ -35,4 +35,30 @@ class Defaults {
             Self.userDefaults.set(newValue, forKey: "nick")
         }
     }
+
+    static var lastHostname: String? {
+        get {
+            Self.userDefaults.string(forKey: "lastHostname")
+        }
+        set {
+            if let value = newValue {
+                Self.userDefaults.set(value, forKey: "lastHostname")
+            } else {
+                Self.userDefaults.removeObject(forKey: "lastHostname")
+            }
+        }
+    }
+
+    static var lastPort: String? {
+        get {
+            Self.userDefaults.string(forKey: "lastPort")
+        }
+        set {
+            if let value = newValue {
+                Self.userDefaults.set(value, forKey: "lastPort")
+            } else {
+                Self.userDefaults.removeObject(forKey: "lastPort")
+            }
+        }
+    }
 }

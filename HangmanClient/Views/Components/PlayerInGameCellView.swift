@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlayerInGameCellView: View {
 
-    @State
+    @Binding
     var player: PlayerInGame
 
     var body: some View {
@@ -51,11 +51,14 @@ struct PlayerInGameCellView: View {
 }
 
 struct PlayerInGameCellView_Previews: PreviewProvider {
+
+    static let player = PlayerInGame(id: 123,
+                                     nick: "Nick",
+                                     points: 1000,
+                                     remainingHealth: 5,
+                                     guessed: false)
+    
     static var previews: some View {
-        PlayerInGameCellView(player: PlayerInGame(id: 123,
-                                                  nick: "Nick",
-                                                  points: 1000,
-                                                  remainingHealth: 5,
-                                                  guessed: false))
+        PlayerInGameCellView(player: .constant(player))
     }
 }

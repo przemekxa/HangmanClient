@@ -12,12 +12,6 @@ struct RoomView: View {
     @ObservedObject
     var viewModel: RoomViewModel
 
-    @State
-    private var players = ["Jeden", "Dwa"]
-
-    @State
-    private var ready = false
-
     var body: some View {
         HStack(alignment: .center, spacing: 16.0) {
 

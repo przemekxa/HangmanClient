@@ -161,8 +161,8 @@ class HangmanClientTests: XCTestCase {
         data += [0x11, 0x22, 3] + "one".utf8 + [0x00, 0x10, 2, 0]
         data += [0x33, 0x44, 4] + "test".utf8 + [0x01, 0x20, 1, 0]
         data += [0x55, 0x66, 5] + "wąż".utf8 + [0x30, 0x20, 3, 1]
-        data += [5] // word length
-        data += "wę".utf8 + [0] + "e".utf8 // word: 'w' 'ę' _ 'e'
+        data += [4] // word length
+        data += "wę".utf32 + [0, 0, 0, 0] + "e".utf32 // word: 'w' 'ę' _ 'e'
 
         let msg = InMessage(Message(type: .gameStatus, data: Data(data)))
         XCTAssertNotNil(msg)
@@ -185,6 +185,7 @@ class HangmanClientTests: XCTestCase {
                                                            points: 0x3020,
                                                            remainingHealth: 3,
                                                            guessed: true))
+            XCTAssertEqual(status.word, ["w", "ę", nil, "e"])
         } else {
             XCTFail("Wrong decoded message type")
         }

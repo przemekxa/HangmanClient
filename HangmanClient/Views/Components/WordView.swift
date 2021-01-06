@@ -9,8 +9,8 @@ import SwiftUI
 
 struct WordView: View {
 
-    @State
-    var chars: [Character?] = ["a", "b", nil, nil, "d"]
+    @Binding
+    var chars: [Character?]
 
     var body: some View {
         HStack(alignment: .center, spacing: 8.0) {
@@ -31,6 +31,6 @@ struct WordView: View {
 
 struct WordView_Previews: PreviewProvider {
     static var previews: some View {
-        WordView()
+        WordView(chars: .constant(["a", "b", nil, nil, "d"]))
     }
 }

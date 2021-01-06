@@ -165,8 +165,8 @@ extension InMessage {
                                             remainingHealth,
                                         guessed: guessed))
         }
-        let wordLength = Int(data[i])
-        let word = Array(String(data: Data(data[i+1..<i+1+wordLength]), encoding: .utf8)!)
+        let wordLength = Int(data[i]) * 4
+        let word = Array(String(data: Data(data[i+1..<i+1+wordLength]), encoding: .utf32BigEndian)!)
             .map { $0 == Character(Unicode.Scalar(0)) ? nil : $0 }
 
         return .gameStatus(GameStatus(endTime: endTime, players: players, word: word))

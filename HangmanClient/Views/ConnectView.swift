@@ -49,12 +49,17 @@ struct ConnectView: View {
 
             Spacer()
 
-            Text("Copyright")
+            Text("Copyright © \(year)")
                 .font(.footnote)
         }
         .padding()
         .frame(minWidth: 300, minHeight: 400)
 
+    }
+
+    private var year: String {
+        let current = Calendar.current.component(.year, from: Date())
+        return String(max(current, 2021))
     }
 }
 

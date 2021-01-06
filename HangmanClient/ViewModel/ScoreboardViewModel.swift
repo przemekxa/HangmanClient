@@ -26,6 +26,7 @@ class ScoreboardViewModel {
     init(_ connection: Connection, scoreboard: [PlayerScoreboard]) {
         self.connection = connection
         self.scoreboard = scoreboard
+        self.connection.delegate = self
 
         NotificationCenter.default
             .publisher(for: .goBack)

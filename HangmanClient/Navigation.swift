@@ -102,6 +102,9 @@ class Navigation {
         viewModel.delegate = self
 
         let window = mainWindow ?? makeMainWindow()
+
+        window.toolbar = nil
+
         window.title = "Wisielec — gra"
         window.contentView = NSHostingView(rootView: GameView(viewModel: viewModel))
         window.makeKeyAndOrderFront(nil)
@@ -142,6 +145,7 @@ extension Navigation: ConnectDelegate {
     func disconnected() {
         log.debug("Disconnected from the server")
         self.connection = nil
+        self.possibleSettings = nil
 
         mainWindow?.close()
         mainWindow = nil
@@ -191,6 +195,24 @@ extension Navigation: RoomDelegate {
     func kicked() {
         log.debug("Player was kicked from the room")
         showHomeWindow(with: "Zostałeś wyrzucony z pokoju")
+    }
+
+    // Host changed
+    func hostChanged(isHost: Bool) {
+        log.debug("Host changed to %@", isHost ? "true" : "false")
+        toolbarController.state = isHost ? .inRoomHost : .inRoom
+        
+        if let toolbar = mainWindow?.toolbar {
+            if isHost {
+                if toolbar.items.count == 1 {
+                    toolbar.insertItem(withItemIdentifier: .startGame, at: 1)
+                }
+            } else {
+                if toolbar.items.count == 2 {
+                    toolbar.removeItem(at: 1)
+                }
+            }
+        }
     }
 
 }

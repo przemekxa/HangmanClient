@@ -17,9 +17,12 @@ struct GameView: View {
 
     var body: some View {
         HStack(alignment: .center, spacing: 0.0) {
-            List(viewModel.players, rowContent: PlayerInGameCellView.init(player:))
-                .listStyle(SidebarListStyle())
-                .frame(maxWidth: 300.0)
+
+            List(viewModel.players.indices) { i in
+                PlayerInGameCellView(player: $viewModel.players[i])
+            }
+            .listStyle(SidebarListStyle())
+            .frame(maxWidth: 300.0)
 
             VStack(alignment: .center, spacing: 16.0) {
                 Text("Gra")
@@ -36,7 +39,11 @@ struct GameView: View {
                     guessedWord
                 } else {
                     wordToBeGuessed
-                    wordGuessing
+                    if viewModel.you.remainingHealth > 0 {
+                        wordGuessing
+                    } else {
+                        noMoreHealth
+                    }
                 }
 
                 yourStats
@@ -55,7 +62,7 @@ struct GameView: View {
             VStack(alignment: .center, spacing: 12.0) {
                 Text("Puste pola oznaczają miejsca, w których brakuje liter.")
 
-                WordView(chars: viewModel.word)
+                WordView(chars: $viewModel.word)
                     .padding(8.0)
                     .cornerRadius(8.0)
                     .overlay(
@@ -81,6 +88,7 @@ struct GameView: View {
 
                 Button(action: {
                     self.viewModel.guess(guessed)
+                    self.guessed = ""
                 }, label: {
                     Text(guessed.count <= 1 ? "Odgadnij literę" : "Odgadnij słowo")
                         .frame(minWidth: 100)
@@ -90,6 +98,15 @@ struct GameView: View {
             }
             .padding(8.0)
         }
+    }
+
+    // Show an information about no more health left
+    private var noMoreHealth: some View {
+        GroupBox(label: Text("Brak żyć"), content: {
+            Text("Nie masz już żyć, aby grać dalej.")
+                .frame(maxWidth: .infinity)
+                .padding()
+        })
     }
 
     // Show an information about winning the game

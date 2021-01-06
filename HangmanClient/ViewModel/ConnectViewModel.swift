@@ -16,8 +16,8 @@ protocol ConnectDelegate: AnyObject {
 class ConnectViewModel: ObservableObject, ConnectionDelegate {
 
     // State of the window
-    @Published var host: String = "127.0.0.1"
-    @Published var port: String = "1234"
+    @Published var host: String
+    @Published var port: String
     @Published var canConnect: Bool = true
     @Published var isConnecting: Bool = false
     @Published var connectionError: String?
@@ -35,6 +35,8 @@ class ConnectViewModel: ObservableObject, ConnectionDelegate {
             log.debug("Init")
         }
 
+        self.host = Defaults.lastHostname ?? "127.0.0.1"
+        self.port = Defaults.lastPort ?? "1234"
         self.connectionError = error
 
         // Check if the port is correct
@@ -48,10 +50,13 @@ class ConnectViewModel: ObservableObject, ConnectionDelegate {
 
     func connect() {
         log.debug("Connect clicked")
+        connectionError = nil
         if canConnect, let port = NWEndpoint.Port(port) {
             connection = Connection(hostname: NWEndpoint.Host(host), port: port, delegate: self)
             connection?.start()
             isConnecting = true
+            Defaults.lastHostname = self.host
+            Defaults.lastPort = self.port
         }
     }
 
