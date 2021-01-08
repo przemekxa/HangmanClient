@@ -22,6 +22,7 @@ class HomeViewModel: ObservableObject {
     @Published var roomID: String = ""
     @Published var error: String?
     @Published var possibleSettings: PossibleRoomSettings?
+    @Published var connectionInfo: String = ""
 
     private let log = Log("🏠HomeVM")
     private var connection: Connection
@@ -35,6 +36,7 @@ class HomeViewModel: ObservableObject {
         self.error = error
         self.playerID = Defaults.playerID
         self.nick = Defaults.nick
+        makeConnectionInfo(loggedIn: possibleSettings != nil)
         log.debug("Init with playerID = %@", String(describing: playerID))
 
         if let possibleSettings = possibleSettings {
@@ -42,6 +44,12 @@ class HomeViewModel: ObservableObject {
         } else {
             self.connection.send(.login(self.playerID))
         }
+    }
+
+    private func makeConnectionInfo(loggedIn: Bool) {
+        let id = (loggedIn && Defaults.playerID != nil) ? "#" + String(Defaults.playerID!) + "\n" : ""
+        let conn = (Defaults.lastHostname ?? "") + ":" + (Defaults.lastPort ?? "")
+        connectionInfo = id + conn
     }
 
     func joinRoom(with id: String) {
@@ -79,6 +87,7 @@ extension HomeViewModel: ConnectionDelegate {
         case .loggedIn(let id):
             playerID = id
             Defaults.playerID = id
+            makeConnectionInfo(loggedIn: true)
             delegate?.loggedIn(with: id)
         case .error(let error):
             self.error = error.userDescription

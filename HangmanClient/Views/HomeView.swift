@@ -48,6 +48,10 @@ struct HomeView: View {
                 }
 
                 Spacer()
+
+                Text(viewModel.connectionInfo)
+                    .font(.caption)
+                    .opacity(0.5)
             }
             //.padding(8.0)
 

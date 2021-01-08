@@ -71,7 +71,7 @@ class GameViewModel: ObservableObject {
     func guess(_ text: String) {
         if text.count == 1, let letter = text.first {
             connection.send(.guess(letter: letter))
-        } else {
+        } else if text.count > 1 {
             connection.send(.guess(word: text))
         }
     }
