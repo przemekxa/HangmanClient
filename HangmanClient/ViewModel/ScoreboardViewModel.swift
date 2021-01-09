@@ -16,14 +16,14 @@ protocol ScoreboardDelegate: AnyObject {
 class ScoreboardViewModel {
 
     // State
-    let scoreboard: [PlayerScoreboard]
+    let scoreboard: Scoreboard
 
     private let log = Log("💯ScoreboardVM")
     private var connection: Connection
     weak var delegate: ScoreboardDelegate?
     private var cancellables = Set<AnyCancellable>()
 
-    init(_ connection: Connection, scoreboard: [PlayerScoreboard]) {
+    init(_ connection: Connection, scoreboard: Scoreboard) {
         self.connection = connection
         self.scoreboard = scoreboard
         self.connection.delegate = self

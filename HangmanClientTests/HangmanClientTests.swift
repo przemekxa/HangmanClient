@@ -217,18 +217,21 @@ class HangmanClientTests: XCTestCase {
 
     func testScoreboard() {
         var data: [UInt8] = [3] // number of playets
-        data += [0x12, 0x34, 3] + "123".utf8 + [0xab, 0xcd]
-        data += [0x56, 0x78, 15] + "Dłuższa nazwa".utf8 + [0x00, 0x00]
-        data += [0x9a, 0xbc, 13] + "🎮Emoji🎮".utf8 + [0x98, 0x76]
+        data += [0x12, 0x34, 3] + "123".utf8 + [0xab, 0xcd, 1]
+        data += [0x56, 0x78, 15] + "Dłuższa nazwa".utf8 + [0x00, 0x00, 0]
+        data += [0x9a, 0xbc, 13] + "🎮Emoji🎮".utf8 + [0x98, 0x76, 0]
+        data += [17] // word length
+        data += "Słowo ze znakami💻".utf32
 
         let msg = InMessage(Message(type: .scoreBoard, data: Data(data)))
         XCTAssertNotNil(msg)
 
-        if case .scoreboard(let players) = msg! {
-            XCTAssertEqual(players.count, 3)
-            XCTAssertEqual(players[0], PlayerScoreboard(id: 0x1234, nick: "123", points: 0xabcd))
-            XCTAssertEqual(players[1], PlayerScoreboard(id: 0x5678, nick: "Dłuższa nazwa", points: 0x0000))
-            XCTAssertEqual(players[2], PlayerScoreboard(id: 0x9abc, nick: "🎮Emoji🎮", points: 0x9876))
+        if case .scoreboard(let scoreboard) = msg! {
+            XCTAssertEqual(scoreboard.players.count, 3)
+            XCTAssertEqual(scoreboard.players[0], PlayerScoreboard(id: 0x1234, nick: "123", points: 0xabcd, guessed: true))
+            XCTAssertEqual(scoreboard.players[1], PlayerScoreboard(id: 0x5678, nick: "Dłuższa nazwa", points: 0x0000, guessed: false))
+            XCTAssertEqual(scoreboard.players[2], PlayerScoreboard(id: 0x9abc, nick: "🎮Emoji🎮", points: 0x9876, guessed: false))
+            XCTAssertEqual(scoreboard.word, "Słowo ze znakami💻")
         } else {
             XCTFail("Wrong decoded message type")
         }

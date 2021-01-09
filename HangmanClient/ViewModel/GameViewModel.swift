@@ -10,7 +10,7 @@ import Combine
 
 protocol GameDelegate: AnyObject {
     func disconnected()
-    func scoreboard(players: [PlayerScoreboard])
+    func scoreboard(scoreboard: Scoreboard)
 }
 
 class GameViewModel: ObservableObject {
@@ -93,7 +93,7 @@ extension GameViewModel: ConnectionDelegate {
         case .gameStatus(let status):
             update(with: status)
         case .scoreboard(let scoreboard):
-            delegate?.scoreboard(players: scoreboard)
+            delegate?.scoreboard(scoreboard: scoreboard)
         default:
             log.error("Message is not supported by this class")
         }

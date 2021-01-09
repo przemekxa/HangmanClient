@@ -69,3 +69,8 @@ struct GameStatus: Equatable {
     let players: [PlayerInGame]
     let word: [Character?]
 }
+
+struct Scoreboard: Equatable, Hashable {
+    let players: [PlayerScoreboard]
+    let word: String
+}

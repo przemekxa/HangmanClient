@@ -111,7 +111,7 @@ class Navigation {
     }
 
     /// Show a scoreboard window
-    private func showScoreboardWindow(status: [PlayerScoreboard]) {
+    private func showScoreboardWindow(status: Scoreboard) {
         let viewModel = ScoreboardViewModel(connection!, scoreboard: status)
         viewModel.delegate = self
 
@@ -220,9 +220,9 @@ extension Navigation: RoomDelegate {
 extension Navigation: GameDelegate {
 
     // The game has ended
-    func scoreboard(players: [PlayerScoreboard]) {
+    func scoreboard(scoreboard: Scoreboard) {
         log.debug("Game ended")
-        showScoreboardWindow(status: players)
+        showScoreboardWindow(status: scoreboard)
     }
 
 }

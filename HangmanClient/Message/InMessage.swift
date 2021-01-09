@@ -14,7 +14,7 @@ enum InMessage: Equatable {
     case roomStatus(RoomStatus)
     case kicked
     case gameStatus(GameStatus)
-    case scoreboard([PlayerScoreboard])
+    case scoreboard(Scoreboard)
 
     /// Initialize incoming message from raw message
     init?(_ raw: Message) {
@@ -186,11 +186,14 @@ extension InMessage {
             let nick = String(data: Data(data[i..<i+nickLength]), encoding: .utf8) ?? "Unknown"
             i += nickLength
             let points = UInt16(bigEndian: Data(data[i...i+1]))
-            i += 2
-            players.append(PlayerScoreboard(id: id, nick: nick, points: points))
+            let guessed = data[i+2] != 0
+            i += 3
+            players.append(PlayerScoreboard(id: id, nick: nick, points: points, guessed: guessed))
         }
+        let wordLength = Int(data[i]) * 4
+        let word = String(data: Data(data[i+1..<i+1+wordLength]), encoding: .utf32BigEndian)!
 
-        return .scoreboard(players)
+        return .scoreboard(Scoreboard(players: players, word: word))
 
     }
 

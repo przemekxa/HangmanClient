@@ -16,13 +16,20 @@ struct ScoreboardView: View {
 
     var body: some View {
         VStack {
-            Text("Wyniki")
+            Text("Koniec gry")
                 .font(.title)
                 .fontWeight(.bold)
 
-            List(viewModel.scoreboard, id: \.self, selection: $selection) { player in
+            Text("Hasło do odgadnięcia:")
+                .padding(.top, 16.0)
+                .padding(.bottom, 4.0)
+            Text(viewModel.scoreboard.word)
+                .font(.system(size: 16.0, weight: .bold, design: .monospaced))
+                .padding(.bottom, 8.0)
+
+            List(viewModel.scoreboard.players, id: \.self, selection: $selection) { player in
                 VStack {
-                    HStack(alignment: .center, spacing: 8.0) {
+                    HStack(alignment: .center, spacing: 16.0) {
                         VStack(alignment: .leading, spacing: 0.0) {
                             Text("Gracz:")
                                 .font(.caption)
@@ -35,7 +42,13 @@ struct ScoreboardView: View {
                             }
                         }
                         Spacer()
-                        VStack(alignment: .trailing, spacing: 0.0) {
+                        VStack(alignment: .trailing, spacing: 2.0) {
+                            Text("Odgadnięto:")
+                                .font(.caption)
+                            Text(player.guessed ? "✅" : "❌")
+                                .font(.headline)
+                        }
+                        VStack(alignment: .trailing, spacing: 2.0) {
                             Text("Punkty:")
                                 .font(.caption)
                             Text(String(player.points))
@@ -55,16 +68,16 @@ struct ScoreboardView: View {
 struct ScoreboardView_Previews: PreviewProvider {
 
     static let players = [
-        PlayerScoreboard(id: 1, nick: "First", points: 1200),
-        PlayerScoreboard(id: 2, nick: "Second", points: 1000),
-        PlayerScoreboard(id: 3, nick: "Third", points: 800),
-        PlayerScoreboard(id: 4, nick: "Fourth", points: 600)
+        PlayerScoreboard(id: 1, nick: "First", points: 1200, guessed: true),
+        PlayerScoreboard(id: 2, nick: "Second", points: 1000, guessed: false),
+        PlayerScoreboard(id: 3, nick: "Third", points: 800, guessed: true),
+        PlayerScoreboard(id: 4, nick: "Fourth", points: 600, guessed: false)
     ]
 
     static var previews: some View {
         ScoreboardView(viewModel: ScoreboardViewModel(
                         Connection(hostname: "127.0.0.1", port: 1234),
-                        scoreboard: players))
+                        scoreboard: Scoreboard(players: players, word: "abcd")))
             .frame(width: 800, height: 600.0)
     }
 }

@@ -27,4 +27,5 @@ struct PlayerScoreboard: Equatable, Hashable, Identifiable {
     let id: Player.ID
     let nick: String
     let points: UInt16
+    let guessed: Bool
 }
