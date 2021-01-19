@@ -15,6 +15,9 @@ struct JoinRoom: View {
     @State
     private var pin = ""
 
+    @State
+    private var joining = false
+
     var body: some View {
 
         VStack {

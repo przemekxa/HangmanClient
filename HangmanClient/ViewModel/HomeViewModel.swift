@@ -26,6 +26,7 @@ class HomeViewModel: ObservableObject {
 
     private let log = Log("🏠HomeVM")
     private var connection: Connection
+    private var isJoining = false
     weak var delegate: HomeDelegate?
 
     private var playerID: Player.ID?
@@ -53,9 +54,12 @@ class HomeViewModel: ObservableObject {
     }
 
     func joinRoom(with id: String) {
-        log.debug("Joining room with id %@", id)
-        setNick()
-        connection.send(.joinRoom(id))
+        if !isJoining {
+            isJoining = true
+            log.debug("Joining room with id %@", id)
+            setNick()
+            connection.send(.joinRoom(id))
+        }
     }
 
     func createRoom(with settings: RoomSettings) {
@@ -91,6 +95,7 @@ extension HomeViewModel: ConnectionDelegate {
             delegate?.loggedIn(with: id)
         case .error(let error):
             self.error = error.userDescription
+            isJoining = false
         case .roomSettings(let settings):
             self.possibleSettings = settings
             delegate?.receivedSettings(possibleSettings: settings)

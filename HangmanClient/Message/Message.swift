@@ -45,7 +45,7 @@ enum MessageError: UInt8, Error, Equatable {
         case .unknown:
             return "Nieznany błąd"
         case .roomFull:
-            return "Pokój pełem"
+            return "Pokój pełen"
         case .roomNotFound:
             return "Nie znaleziono pokoju"
         case .newHostNotFound:
