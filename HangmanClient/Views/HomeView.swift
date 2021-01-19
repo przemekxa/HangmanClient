@@ -27,14 +27,13 @@ struct HomeView: View {
                     .font(.title)
                     .fontWeight(.heavy)
                     .padding(.bottom, 16.0)
-                
-                
+
                 Text("Zasady gry")
                     .font(.callout)
 
+                // swiftlint:disable:next line_length
                 Text("Zadaniem każdego z graczy jest odgadnięcie hasła. Gracze widzą z ilu liter składa się hasło i mogą odgadywać poszczególne litery. Za każdy błędny strzał gracz traci życie. Wygrywa osoba, która jako pierwsza odgadnie hasło lub zgromadzi najwięcej liter, w przypadku zakończenia gry poprzez upłynięcie czasu.")
                     .padding(.bottom, 16.0)
-                
 
                 if let error = viewModel.error {
                     GroupBox(label: Text("Błąd").foregroundColor(.red)) {
@@ -44,7 +43,7 @@ struct HomeView: View {
                 }
 
                 Spacer()
-                
+
                 GroupBox(label: Text("Nazwa użytkownika"), content: {
                     TextField("Nazwa użytkownika", text: $viewModel.nick)
                         .padding(8.0)

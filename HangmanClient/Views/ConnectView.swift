@@ -50,9 +50,6 @@ struct ConnectView: View {
             }
 
             Spacer()
-
-            Text("Copyright © \(year)")
-                .font(.footnote)
         }
         .padding()
         .frame(minWidth: 300, minHeight: 400)
